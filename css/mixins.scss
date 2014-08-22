@@ -1,0 +1,51 @@
+@mixin bp($point) {
+  @if $point == large {
+    @media (max-width: 1200px) { @content; }
+  }
+  @else if $point == medium {
+    @media (max-width: 800px) { @content; }
+  }
+  @else if $point == small {
+    @media (max-width: 500px)  { @content; }
+  }
+}
+
+@mixin popshadow() {
+    background: white;
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 1);
+}
+
+@mixin invert-colors() {
+    color: $bg-color;
+    background: $text-color;
+}
+
+/* FLEXBOX */
+@mixin flex-parent($row_or_col: row, $wrap: wrap, $justify: flex-start, $alignContent: flex-start,$alignItems: center) {
+    display: flex;
+    flex-direction: $row_or_col;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+    align-content: $alignContent;
+    align-items: $alignItems;
+}
+
+@mixin flex-child($numItems: auto, $mode: grow, $margin: 0.05) {
+    $g: 0;
+    $s: 1;
+    @if $mode == 'grow' {
+        $g: 1; 
+        $s: 0;
+    }
+
+    @if $numItems == 'auto' {
+        flex: $g $s auto;
+    } @else {
+        $pct: (100%/$numItems)-($margin*(100%/$numItems));
+        $space: ($margin*(100%/$numItems))/2;
+        margin: $space;
+        padding: $space;
+        flex: $g $s $pct;
+        max-width: $pct;
+    }
+}

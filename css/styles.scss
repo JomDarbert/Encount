@@ -1,0 +1,259 @@
+@import "reset","base";
+
+html {
+   background: url('../img/large_hand_bg.jpg') center center fixed;
+}
+
+nav { 
+	margin: 3rem 0;
+	ul {font-size: 1.75rem;}
+}
+
+header {
+	text-align: center;
+	p{font-style: italic;}
+}
+
+.home_error { margin-top: 1rem;}
+
+#event_login {
+	width: 50%;
+	margin: 0 auto;
+	.inner_container {padding: 1rem;}
+	.row { width: 75%;margin: 0.5rem 0 0.5rem 12.5%;}
+
+	button { 
+		text-align: center;
+		width: 25%;
+		margin-left: 37.5%;
+	}
+
+	label { display: inline-block; width: 28%; }
+
+	input, select {
+		width: 67%;
+		border: none;
+		border-bottom: 1px solid;
+		border-radius: 1px;
+	}
+
+	.error {
+		text-align: center;
+		position: absolute;
+		top: 80px;
+		margin-left: 90px;
+	}
+}
+
+
+#news article {
+	margin-bottom: 5rem;
+}
+
+#rules {
+	article {
+		margin: 1rem 0;
+		border-bottom: 1px dotted $text-color;
+	}
+}
+
+
+#event_header {
+	width: 1200px;
+	max-width: 95vw;
+	margin: 0 auto;
+	#loggedInUser {
+		@include flex-parent($justify: flex-end);
+		padding: 15px 15px 0 0;
+		button { margin-left: 0.5rem; }
+		margin-bottom: 3rem;
+	
+}
+	nav {
+		margin: 0;
+		@include flex-parent($justify: flex-start, $alignContent: flex-start);
+		button { @include flex-child(auto,grow);margin: 0.5rem; }
+	}
+
+	#filters {
+		@include flex-parent($justify: center);
+		ul { display: block; list-style: none; }
+	}
+}
+
+.event_container {
+	@extend .container;
+	width: 1200px;
+	max-width: 95vw;
+	padding: 0;
+}
+
+#event_container {
+	@include flex-parent();
+
+	h2 { font-size: 1.8rem; line-height: 1.2; }
+	h3,h4,h5,h6 { font-size: 1.3rem;}
+	h5 { font-size: 1.2rem; }
+	h6 { font-size: 1.1rem; margin-top: 0.5rem;}
+	.note { font-style: italic; height: 50px; overflow-x: auto;}
+
+	header {
+		text-align: left;
+		margin-bottom: 1rem;
+	}
+
+	.tr {
+		position: absolute;
+		right: 1rem;
+		font-size: 1.3rem;
+		margin: 0;
+		font-family: $smallheader-font-family;
+		font-weight: $smallheader-font-weight - 100;
+	}
+
+	.num_participants { top: 1rem; font-weight: $smallheader-font-weight; }
+	.log 		      { top: 3rem; }
+	.prog_only        { top: 2rem; }
+
+	.event {
+		@include flex-child(2,grow);
+		@include bp(medium) {
+			@include flex-child(1,grow);
+		}
+		height: 525px;
+		border: 2px solid;
+		border-radius: 3px;
+		background-color: $bg-color;
+		position: relative;
+	}
+
+	.roles {
+		@include flex-parent($alignItems: flex-start);
+	}
+
+	// Count of each role within an event
+	.role_count {
+		@include flex-child(auto,grow);
+		margin: 0 0.5rem;
+	}
+
+	.role_title {
+		text-align: center;
+		h3,h5 { display: inline-block; }
+		h3 { margin-right: 0.25rem; font-size: 1.6rem;}
+		h5 { font-size: 1.3rem; }
+	}
+
+	// Count of each class within a role
+	.class_count {
+		@include flex-parent();
+		border-bottom: 1px solid $text-color;
+		border-top: 1px solid $text-color;
+		padding: 0.5rem 0;
+		h5,h6 { font-size: 1rem; }
+
+		div {
+			@include flex-child(auto,grow);
+			text-align: center;
+		}
+	}
+
+	.user_count {
+		margin-top: 0.5rem;
+		max-height: 100px;
+		overflow-y: auto;
+		overflow-x: hidden;
+		li {font-family: $bigheader-font-family;font-size: 0.9rem; margin: 0 0 0 1.1rem;}
+	}
+
+	.buttons {
+		position: absolute;
+		bottom: 1rem;
+		right: 1rem;
+		width: auto;
+	}
+
+}
+
+#addEvent, #editEvent, #profile, #eventStats, #editUsers {
+	margin: 1rem 0.5rem 0 0.5rem;
+	border: 2px solid $text-color;
+	border-radius: 3px;
+	background: white;
+}
+
+#addEvent {
+	@include flex-parent();
+
+	#basic_info, #size_info, #extra_info {
+		flex: 1 0 100%;
+		@include flex-parent();
+		margin-bottom: 0.25rem;
+		padding: 0.5rem;
+		border-bottom: 1px dashed $text-color;
+	}
+
+	p,input,label,select {
+		font-size: 1rem;
+		font-style: normal;
+		display: inline-block;
+	}
+
+	#basic_info {
+		label { width: 50%; }
+		p     { 
+				text-align: right;
+			    width: 35%;
+			    margin: 0 1rem 1rem 0;
+		}
+		input,select { width: 50%; }
+	}
+
+	#size_info {
+		@include flex-parent($alignItems: flex-start);
+
+		section {
+			flex: 1 0 30%;
+			h4,p {margin: 0; margin-right: 0.5rem;}
+			p {width: 100px; text-align: right;}
+			h4 {display: inline-block;}
+			input { width: 50px; }
+			article { @include flex-parent(); margin: 0 1rem;}
+			label { @include flex-child(0); }
+		}
+	}
+
+}
+
+#editEvent {
+	@include flex-parent();
+
+	section {
+		@include flex-child(3);
+		border: 1px solid $text-color;
+		margin: 0.5rem;
+		padding: 0.25rem;
+		border-radius: 3px;
+
+		p{text-align: right; width: 30%; margin-right: 0.5rem;}
+		input,select,textarea {width: 60%;text-align: left;}
+		p,input,textarea {
+			font-size: 1rem;
+			font-style: normal;
+			display: inline-block;
+		}
+	}
+}
+
+#editUsers {
+	@include flex-parent();
+	.username { font-size: 1rem;}
+	.userdetails {
+		@include flex-child(3,grow);
+		border: 1px solid;
+		ul { @include flex-parent();}
+	}
+	li { flex: 1 0 100%; list-style: none; margin: 0; }
+	label { width: 40%; display: inline-block; text-align: right;}
+	input { width: 53%; display: inline-block; margin-left: 0.5rem;}
+}
