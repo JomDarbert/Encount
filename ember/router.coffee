@@ -1,11 +1,9 @@
 # ROUTER 
 App.Router.map ->
-  @resource "user", path: "/:username", ->
-    @resource "events", ->
-      @route "completed"
-      @route "upcoming"
-      @route "registered"
+  @resource "user", ->
+    @resource "encounter", ->
+        @resource "player"
+        @resource "creature", ->
+            @resource "ability"
 
 # ROUTES
-
-App.ApplicationRoute = Ember.Route.extend

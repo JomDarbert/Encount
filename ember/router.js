@@ -1,13 +1,10 @@
 App.Router.map(function() {
-  return this.resource("user", {
-    path: "/:username"
-  }, function() {
-    return this.resource("events", function() {
-      this.route("completed");
-      this.route("upcoming");
-      return this.route("registered");
+  return this.resource("user", function() {
+    return this.resource("encounter", function() {
+      this.resource("player");
+      return this.resource("creature", function() {
+        return this.resource("ability");
+      });
     });
   });
 });
-
-App.ApplicationRoute = Ember.Route.extend;
