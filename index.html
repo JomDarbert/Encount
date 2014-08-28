@@ -10,8 +10,30 @@
     <![endif]-->
 </head>
 <body>
-    <script type="text/x-handlebars" data-template-name="application">
-    <h1>Test</h1>
+    <script type="text/x-handlebars" data-template-name="index">
+        <ol>
+        {{#each}}
+        <div>
+            {{username}}
+            <ol>
+                {{#each encounters}}
+                <li>{{name}}
+                    <ul>
+                        {{#each players}}<li>{{name}}</li>{{/each}}
+                        {{#each creatures}}
+                        <li>{{name}}
+                            <ul>
+                            {{#each abilities}}<li>{{name}}</li>{{/each}}
+                            </ul>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </li>
+                {{/each}}
+            </ol>
+        </div>
+        {{/each}}
+        </ol>
     </script>
 </body>
 	
