@@ -1,5 +1,5 @@
 App.User = DS.Model.extend({
-  username: DS.attr("string"),
+  user_name: DS.attr("string"),
   password: DS.attr("string"),
   encounters: DS.hasMany("encounter", {
     async: true
@@ -16,7 +16,7 @@ App.User = DS.Model.extend({
 });
 
 App.Encounter = DS.Model.extend({
-  name: DS.attr("string"),
+  encounter_name: DS.attr("string"),
   user: DS.belongsTo("user", {
     async: true
   }),
@@ -30,7 +30,7 @@ App.Encounter = DS.Model.extend({
 });
 
 App.Player = DS.Model.extend({
-  name: DS.attr("string"),
+  player_name: DS.attr("string"),
   initiative: DS.attr("number"),
   notes: DS.attr("string"),
   encounters: DS.hasMany("encounter", {
@@ -42,7 +42,7 @@ App.Player = DS.Model.extend({
 });
 
 App.Creature = DS.Model.extend({
-  name: DS.attr("string"),
+  creature_name: DS.attr("string"),
   hp: DS.attr("number"),
   ac: DS.attr("number"),
   str: DS.attr("number"),
@@ -68,7 +68,7 @@ App.Creature = DS.Model.extend({
 });
 
 App.Ability = DS.Model.extend({
-  name: DS.attr("string"),
+  ability_name: DS.attr("string"),
   creatures: DS.hasMany("creature", {
     async: true
   }),
@@ -80,7 +80,7 @@ App.Ability = DS.Model.extend({
 App.User.FIXTURES = [
   {
     id: 1,
-    username: "user_one",
+    user_name: "user_one",
     encounters: [1],
     players: [1],
     creatures: [1],
@@ -91,7 +91,13 @@ App.User.FIXTURES = [
 App.Encounter.FIXTURES = [
   {
     id: 1,
-    name: "encounter_one",
+    encounter_name: "encounter_one",
+    user: 1,
+    players: [1],
+    creatures: [1]
+  }, {
+    id: 2,
+    encounter_name: "encounter_two",
     user: 1,
     players: [1],
     creatures: [1]
@@ -101,7 +107,7 @@ App.Encounter.FIXTURES = [
 App.Creature.FIXTURES = [
   {
     id: 1,
-    name: "creature_one",
+    creature_name: "creature_one",
     user: 1,
     encounters: [1],
     abilities: [1]
@@ -111,7 +117,7 @@ App.Creature.FIXTURES = [
 App.Player.FIXTURES = [
   {
     id: 1,
-    name: "player_one",
+    player_name: "player_one",
     user: 1,
     encounters: [1]
   }
@@ -120,7 +126,7 @@ App.Player.FIXTURES = [
 App.Ability.FIXTURES = [
   {
     id: 1,
-    name: "ability_one",
+    ability_name: "ability_one",
     user: 1,
     creatures: [1]
   }

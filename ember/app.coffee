@@ -1,4 +1,6 @@
-window.App = Ember.Application.create()
+window.App = Ember.Application.create(
+    LOG_TRANSITIONS_INTERNAL: true
+)
 App.ApplicationAdapter = DS.FixtureAdapter
 ###
 App.ApplicationAdapter = DS.FirebaseAdapter.extend(

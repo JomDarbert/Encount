@@ -11,29 +11,36 @@
 </head>
 <body>
     <script type="text/x-handlebars" data-template-name="index">
+        <h3>Choose a user!</h3>
         <ol>
         {{#each}}
-        <div>
-            {{username}}
-            <ol>
-                {{#each encounters}}
-                <li>{{name}}
-                    <ul>
-                        {{#each players}}<li>{{name}}</li>{{/each}}
-                        {{#each creatures}}
-                        <li>{{name}}
-                            <ul>
-                            {{#each abilities}}<li>{{name}}</li>{{/each}}
-                            </ul>
-                        </li>
-                        {{/each}}
-                    </ul>
-                </li>
-                {{/each}}
-            </ol>
-        </div>
+            {{#link-to "user" this}}{{user_name}}{{/link-to}}
         {{/each}}
         </ol>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="user">
+        {{#link-to "index"}}Home{{/link-to}}
+        <h6>{{user_name}}</h6>
+        <ol>
+            {{#each encounters}}
+                <li>
+                    {{#link-to "encounter" this}}
+                        {{encounter_name}}
+                    {{/link-to}}
+                </li>
+            {{/each}}
+        </ol>
+        {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="encounter">
+        {{#each players}}
+            {{player_name}}
+        {{/each}}
+        {{#each creatures}}
+            {{creature_name}}
+        {{/each}}
     </script>
 </body>
 	
