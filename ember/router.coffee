@@ -2,6 +2,8 @@
 App.Router.map ->
     @resource "user", path: '/:user_name', ->
         @resource "encounter", path: '/:encounter_name'
+        @resource "creature", path: '/:creature_name'
+        @resource "player", path: '/:player_name'
 
 # ROUTES
 App.IndexRoute = Ember.Route.extend
@@ -12,3 +14,9 @@ App.UserRoute = Ember.Route.extend
 
 App.EncounterRoute = Ember.Route.extend
     model: (params) -> @store.find('encounter',params.id)
+
+App.CreatureRoute = Ember.Route.extend
+    model: (params) -> @store.find('creature',params.id)
+
+App.PlayerRoute = Ember.Route.extend
+    model: (params) -> @store.find('player',params.id)

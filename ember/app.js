@@ -12,3 +12,5 @@ App.ApplicationAdapter = DS.FirebaseAdapter.extend(
 
 App.ApplicationSerializer = DS.FirebaseSerializer.extend()
  */
+
+App.showHide = Ember.View.extend();
