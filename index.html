@@ -74,7 +74,7 @@
                 {{#each players}}
                 <li>
                     {{#link-to "player" this}}
-                        {{player_name}}
+                        {{#view App.drag content=this}}{{player_name}}{{/view}}
                     {{/link-to}}
                 </li>
                 {{/each}}
@@ -98,6 +98,7 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="encounter">
+        {{#view App.drop}}Drop here!{{/view}}
         {{#each players}}
             {{player_name}}
         {{/each}}

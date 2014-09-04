@@ -54,12 +54,12 @@ App.Ability = DS.Model.extend
 # -----------------------------------------------
 
 App.User.FIXTURES = [
-  { id: 1, user_name: "user_one", encounters: [1], players: [1], creatures: [1], abilities: [1] }
+  { id: 1, user_name: "user_one", encounters: [1,2], players: [1,2], creatures: [1], abilities: [1] }
 ]
 
 App.Encounter.FIXTURES = [
-  { id: 1, encounter_name: "encounter_one", user: 1, players: [1], creatures: [1] }
-  { id: 2, encounter_name: "encounter_two", user: 1, players: [1], creatures: [1] }
+  { id: 1, encounter_name: "encounter_one", user: 1, players: [], creatures: [1] }
+  { id: 2, encounter_name: "encounter_two", user: 1, players: [], creatures: [] }
 ]
 
 App.Creature.FIXTURES = [
@@ -68,6 +68,7 @@ App.Creature.FIXTURES = [
 
 App.Player.FIXTURES = [
   { id: 1, player_name: "player_one", user: 1, encounters: [1] }
+  { id: 2, player_name: "player_two", user: 1, encounters: [2] }
 ]
 
 App.Ability.FIXTURES = [
