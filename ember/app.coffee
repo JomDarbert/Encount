@@ -18,7 +18,12 @@ App.drag = Ember.View.extend(
     classNames: ['drag']
 
     dragStart: (event) ->
-        event.dataTransfer.setData 'text/data', @get 'content.id'
+        data = 
+            type: @get('content').constructor.typeKey
+            id: Number(@get 'content.id')
+
+        json = JSON.stringify data
+        event.dataTransfer.setData 'data', json
 )
 
 App.drop = Ember.View.extend(
@@ -29,17 +34,21 @@ App.drop = Ember.View.extend(
         event.preventDefault()
 
     drop: (event) ->
-        id = Number(event.dataTransfer.getData 'text/data')
+        data = JSON.parse event.dataTransfer.getData 'data'
         player = null
-        exists = false
+        creature = null
 
-        @get('parentView.controller').get('model').get('players').forEach (p) ->
-            test_id = Number(p.get 'id')
-            if test_id is id then player = p
+        if data.type is 'player'
+            @get('parentView.controller').get('model').get('players').forEach (p) ->
+                test_id = Number(p.get 'id')
+                if test_id is data.id then player = p
 
-        @get('controller.model').get('players').forEach (p) ->
-            test_id = Number(p.get 'id')
-            if test_id is id then exists = true
+            @get('controller.model').get('players').pushObject player
+            
+        else if data.type is 'creature'
+            @get('parentView.controller').get('model').get('creatures').forEach (c) ->
+                test_id = Number(c.get 'id')
+                if test_id is data.id then creature = c
 
-        if exists is false then @get('controller.model').get('players').pushObject player
+            @get('controller.model').get('creatures').pushObject creature
 )

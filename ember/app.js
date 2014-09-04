@@ -20,7 +20,13 @@ App.drag = Ember.View.extend({
   draggable: 'true',
   classNames: ['drag'],
   dragStart: function(event) {
-    return event.dataTransfer.setData('text/data', this.get('content.id'));
+    var data, json;
+    data = {
+      type: this.get('content').constructor.typeKey,
+      id: Number(this.get('content.id'))
+    };
+    json = JSON.stringify(data);
+    return event.dataTransfer.setData('data', json);
   }
 });
 
@@ -31,26 +37,28 @@ App.drop = Ember.View.extend({
     return event.preventDefault();
   },
   drop: function(event) {
-    var exists, id, player;
-    id = Number(event.dataTransfer.getData('text/data'));
+    var creature, data, player;
+    data = JSON.parse(event.dataTransfer.getData('data'));
     player = null;
-    exists = false;
-    this.get('parentView.controller').get('model').get('players').forEach(function(p) {
-      var test_id;
-      test_id = Number(p.get('id'));
-      if (test_id === id) {
-        return player = p;
-      }
-    });
-    this.get('controller.model').get('players').forEach(function(p) {
-      var test_id;
-      test_id = Number(p.get('id'));
-      if (test_id === id) {
-        return exists = true;
-      }
-    });
-    if (exists === false) {
+    creature = null;
+    if (data.type === 'player') {
+      this.get('parentView.controller').get('model').get('players').forEach(function(p) {
+        var test_id;
+        test_id = Number(p.get('id'));
+        if (test_id === data.id) {
+          return player = p;
+        }
+      });
       return this.get('controller.model').get('players').pushObject(player);
+    } else if (data.type === 'creature') {
+      this.get('parentView.controller').get('model').get('creatures').forEach(function(c) {
+        var test_id;
+        test_id = Number(c.get('id'));
+        if (test_id === data.id) {
+          return creature = c;
+        }
+      });
+      return this.get('controller.model').get('creatures').pushObject(creature);
     }
   }
 });

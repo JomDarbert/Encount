@@ -51,7 +51,7 @@
                 {{#each creatures}}
                 <li>
                     {{#link-to "creature" this}}
-                        {{creature_name}}
+                        {{#view App.drag content=this}}{{creature_name}}{{/view}}
                     {{/link-to}}
                 </li>
                 {{/each}}
