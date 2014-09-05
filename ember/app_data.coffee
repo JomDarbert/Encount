@@ -15,7 +15,14 @@ App.Encounter = DS.Model.extend
 
 App.Player = DS.Model.extend
     player_name: DS.attr "string" 
-    initiative: DS.attr "number" 
+    initiative: DS.attr "number"
+    strength: DS.attr "number"
+    constitution: DS.attr "number"
+    dexterity: DS.attr "number"
+    intelligence: DS.attr "number"
+    wisdom: DS.attr "number"
+    charisma: DS.attr "number"
+    armor: DS.attr "number"
     notes: DS.attr "string" 
     encounters: DS.hasMany "encounter", {async: true}
     user: DS.belongsTo "user", {async: true}

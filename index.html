@@ -98,13 +98,53 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="encounter">
-        {{#view App.drop}}Drop here!{{/view}}
-        {{#each players}}
-            {{player_name}}
-        {{/each}}
-        {{#each creatures}}
-            {{creature_name}}
-        {{/each}}
+        {{#view App.drop}}Drop here!
+            {{#each players}}
+                {{player_name}}
+            {{/each}}
+            {{#each creatures}}
+                {{creature_name}}
+            {{/each}}
+        {{/view}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="player">
+        {{input value=player_name placeholder="Name" class="player_name"}}
+        {{textarea value=notes placeholder="Notes" class="player_notes"}}
+        <section class="player_statblock">
+            <div class="player_stat">
+                <label>STR</label>
+                {{input value=strength type="number" placeholder="STR"}}
+            </div>
+            <div class="stat">
+                <label>CON</label>
+                {{input value=constitution type="number" placeholder="CON"}}
+            </div>
+            <div class="stat">
+                <label>DEX</label>
+                {{input value=dexterity type="number" placeholder="DEX"}}
+            </div>
+            <div class="stat">
+                <label>INT</label>
+                {{input value=intelligence type="number" placeholder="INT"}}
+            </div>
+            <div class="stat">
+                <label>WIS</label>
+                {{input value=wisdom type="number" placeholder="WIS"}}
+            </div>
+            <div class="stat">
+                <label>CHA</label>
+                {{input value=charisma type="number" placeholder="CHA"}}
+            </div>
+            <div class="stat">
+                <label>AC</label>
+                {{input value=armor type="number" placeholder="AC" class="player_ac"}}
+            </div>
+            <div class="stat">
+                <label>INIT</label>
+                {{input value=initiative type="number" placeholder="Initiative" class="player_initiative"}}
+            </div>
+        </section>
     </script>
 </body>
 	
