@@ -40,6 +40,7 @@
     wisdom: DS.attr("number"),
     charisma: DS.attr("number"),
     armor: DS.attr("number"),
+    speed: DS.attr("number"),
     notes: DS.attr("string"),
     encounters: DS.hasMany("encounter", {
       async: true
@@ -51,7 +52,8 @@
 
   App.Creature = DS.Model.extend({
     creature_name: DS.attr("string"),
-    hp: DS.attr("number"),
+    hp_min: DS.attr("number"),
+    hp_max: DS.attr("number"),
     ac: DS.attr("number"),
     str: DS.attr("number"),
     con: DS.attr("number"),
