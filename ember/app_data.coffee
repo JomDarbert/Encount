@@ -50,15 +50,14 @@ App.Creature = DS.Model.extend
 
 App.Ability = DS.Model.extend
     ability_name: DS.attr "string" 
-    #description: DS.attr "string" 
-    #hit_roll: DS.attr "string" 
-    #damage_roll: DS.attr "string" 
-    #recharge: DS.attr "string" 
-    #uantity: DS.attr "number" 
-    #aoe_type: DS.attr "string" 
-    #range: DS.attr "string" 
+    description: DS.attr "string" 
+    hit_roll: DS.attr "string" 
+    damage_roll: DS.attr "string" 
+    recharge: DS.attr "string" 
+    quantity: DS.attr "number" 
+    aoe_type: DS.attr "string" 
+    range: DS.attr "string" 
     creatures: DS.hasMany "creature", {async: true}
-    user: DS.belongsTo "user", {async: true}
 
 # -----------------------------------------------
 

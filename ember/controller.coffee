@@ -36,6 +36,8 @@ App.UserController = Ember.ObjectController.extend(
             @set "newCreatureName", ""
             return
 
+
+
         new_player: (user, name) ->
             newPlayer = @store.createRecord("player",
                 player_name: name
@@ -50,17 +52,42 @@ App.UserController = Ember.ObjectController.extend(
             return
 
         toggle_new_encounter: ->
-            @toggleProperty "showNewEncounter", true
-            @toggleProperty "showNewEncounterButton", false
+            @toggleProperty "showNewEncounter",
+            @toggleProperty "showNewEncounterButton"
             return
 
         toggle_new_creature: ->
-            @toggleProperty "showNewCreature", true
-            @toggleProperty "showNewCreatureButton", false
+            @toggleProperty "showNewCreature"
+            @toggleProperty "showNewCreatureButton"
             return
 
+
         toggle_new_player: ->
-            @toggleProperty "showNewPlayer", true
-            @toggleProperty "showNewPlayerButton", false
+            @toggleProperty "showNewPlayer"
+            @toggleProperty "showNewPlayerButton"
+            return
+)
+
+App.CreatureController = Ember.ObjectController.extend(
+    showNewAbility: false
+    showNewAbilityButton: true
+
+    actions:    
+        new_ability: (creature, name) ->
+            newAbility = @store.createRecord("ability",
+                ability_name: name
+                creature: creature
+            )
+            newAbility.save()
+            creature.get("abilities").pushObject newAbility
+
+            @set "showNewAbility", false
+            @set "showNewAbilityButton", true
+            @set "newAbilityName", ""
+            return
+
+        toggle_new_ability: ->
+            @toggleProperty "showNewAbility"
+            @toggleProperty "showNewAbilityButton"
             return
 )

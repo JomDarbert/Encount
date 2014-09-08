@@ -109,8 +109,11 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="player">
-        {{input value=player_name placeholder="Name" class="player_name"}}
-        {{textarea value=notes placeholder="Notes" class="player_notes"}}
+        <section class="player_basic">
+            {{input value=player_name placeholder="Name" class="player_name"}}
+            {{textarea value=notes placeholder="Notes" class="player_notes"}}
+        </section>
+
         <section class="player_statblock">
             <div class="stat">
                 <label>STR</label>
@@ -151,9 +154,11 @@
         </section>
     </script>
 
-        <script type="text/x-handlebars" data-template-name="creature">
-        {{input value=creature_name placeholder="Name" class="creature_name"}}
-        {{input value=experience placeholder="Exp" class="creature_experience"}}
+    <script type="text/x-handlebars" data-template-name="creature">
+        <section class="creature_basic">
+            {{input value=creature_name placeholder="Name" class="creature_name"}}
+            {{input value=experience placeholder="Exp" class="creature_experience"}}
+        </section>
 
         <section class="creature_hp">
             {{input value=hp_min placeholder="HP min" class="creature_hp_min"}}
@@ -163,12 +168,6 @@
         <section class="creature_misc">
             {{textarea value=loot placeholder="Loot" class="creature_loot"}}
             {{textarea value=notes placeholder="Notes" class="creature_notes"}}
-        </section>
-
-        <section class="creature_abilities">
-            {{#each abilities}}
-                {{ability_name}}
-            {{/each}}
         </section>
 
         <section class="creature_statblock">
@@ -198,7 +197,7 @@
             </div>
             <div class="stat">
                 <label>AC</label>
-                {{input value=armor type="number" placeholder="AC" class="player_ac"}}
+                {{input value=armor type="number" placeholder="AC"}}
             </div>
             <div class="stat">
                 <label>SPEED</label>
@@ -206,9 +205,59 @@
             </div>
             <div class="stat">
                 <label>INIT</label>
-                {{input value=initiative type="number" placeholder="Initiative" class="player_initiative"}}
+                {{input value=initiative type="number" placeholder="Initiative"}}
             </div>
         </section>
+
+        <section class="creature_abilities">
+            {{#each abilities}}
+                <section class="creature_ability">
+                    <div class="ability_stat">
+                        {{input value=ability_name placeholder="Ability name"}}
+                    </div>
+                    <div class="ability_stat">
+                        <label>Description</label>
+                        {{textarea value=description placeholder="Ability description"}}
+                    </div>
+                    <div class="ability_stat">
+                        <label>Hit</label>
+                        {{input value=hit_roll placeholder="Hit roll"}}
+                    </div>
+                    <div class="ability_stat">
+                        <label>Damage</label>
+                        {{input value=damage_roll placeholder="Damage roll"}}
+                    </div>
+                    <div class="ability_stat">
+                        <label>Range</label>
+                        {{input value=range placeholder="Range"}}
+                    </div>
+                    <div class="ability_stat">
+                        <label>Quantity</label>
+                        {{input value=quantity placeholder="Quantity"}}
+                    </div>
+                    <div class="ability_stat">
+                        <label>Recharge</label>
+                        {{input value=recharge placeholder="Recharge"}}
+                    </div>
+                    <div class="ability_stat">
+                        <label>AOE</label>
+                        {{view Ember.Select content=aoe_types prompt="AOE Type" selection=aoe_type}}
+                    </div>
+                </section>
+            {{/each}}
+
+            {{#view App.showHide isVisible=showNewAbilityButton}}
+                <button {{action "toggle_new_ability"}}>+</button>
+            {{/view}}
+
+            {{#view App.showHide isVisible=showNewAbility class="newAbility"}}
+                <form {{action "new_ability" this this.newAbilityName on="submit"}}>
+                    {{input value=newAbilityName}}
+                </form>
+                <button {{action "toggle_new_ability"}}>-</button>
+            {{/view}}
+        </section>
+
     </script>
 </body>
 	

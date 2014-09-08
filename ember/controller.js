@@ -45,16 +45,38 @@ App.UserController = Ember.ObjectController.extend({
       this.set("newPlayerName", "");
     },
     toggle_new_encounter: function() {
-      this.toggleProperty("showNewEncounter", true);
-      this.toggleProperty("showNewEncounterButton", false);
+      this.toggleProperty("showNewEncounter", this.toggleProperty("showNewEncounterButton"));
     },
     toggle_new_creature: function() {
-      this.toggleProperty("showNewCreature", true);
-      this.toggleProperty("showNewCreatureButton", false);
+      this.toggleProperty("showNewCreature");
+      this.toggleProperty("showNewCreatureButton");
     },
     toggle_new_player: function() {
-      this.toggleProperty("showNewPlayer", true);
-      this.toggleProperty("showNewPlayerButton", false);
+      this.toggleProperty("showNewPlayer");
+      this.toggleProperty("showNewPlayerButton");
+    }
+  }
+});
+
+App.CreatureController = Ember.ObjectController.extend({
+  showNewAbility: false,
+  showNewAbilityButton: true,
+  actions: {
+    new_ability: function(creature, name) {
+      var newAbility;
+      newAbility = this.store.createRecord("ability", {
+        ability_name: name,
+        creature: creature
+      });
+      newAbility.save();
+      creature.get("abilities").pushObject(newAbility);
+      this.set("showNewAbility", false);
+      this.set("showNewAbilityButton", true);
+      this.set("newAbilityName", "");
+    },
+    toggle_new_ability: function() {
+      this.toggleProperty("showNewAbility");
+      this.toggleProperty("showNewAbilityButton");
     }
   }
 });
