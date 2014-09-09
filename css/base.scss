@@ -43,14 +43,6 @@ html, body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-    max-width: $container-width;
-    margin: 0 auto;
-    background-color: rgba($bg-color,0.95);
-    min-height: 100vh;
-    padding: 0 3rem;
-}
-
 /* TYPOGRAPHY */
 h1, h2, h3, h4, h5, h6 {
     font-family: $sans;
@@ -66,7 +58,7 @@ h5     { font-size: 150%; }
 h6     { font-size: 130%; }
 
 p,ol,ul { 
-    margin: 0.5rem 0; 
+    margin: 0 0 1rem 0; 
     font-size: 100%;
 }
 
@@ -89,6 +81,10 @@ input, select, button, label, textarea {
     padding: 0.25rem;
 }
 
+textarea {
+    font-family: $serif;
+}
+
 button {
     border: 1px solid darken($blue,5%);
     background: darken($blue,5%);
@@ -96,9 +92,12 @@ button {
     font-family: $sans;
 }
 
-input:not([type='checkbox']) { 
-    border-bottom: 1px solid lighten($text-color,20%);
-    margin: 1px solid;
+
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 button:focus,button:hover,button.active {
@@ -107,10 +106,16 @@ button:focus,button:hover,button.active {
     color: $text-color;
 }
 
+input:not([type='checkbox']) { 
+    border-bottom: 1px solid lighten($text-color,20%);
+    margin-bottom: 1px;
+}
+
 input,textarea,select {
     &:active,&:focus,&.active, &:hover{
         border-color: darken($blue,20%);
-        background: lighten($blue,40%);
+        border-width: 2px;
+        margin-bottom: 0px;
     }
 }
 

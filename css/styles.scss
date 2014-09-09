@@ -1,5 +1,99 @@
 @import "reset","base";
 
+// USER PAGE
+#user_page {
+    background: $blue;
+    padding: 0.5rem;
+    height: 100vh;
+    width: 100%;
+}
+
+#selection_panels {
+    @include flex-parent();
+    box-shadow: 0px 1px 1px 0px rgba(black, 1);
+    border: none;
+    box-shadow: none;
+    height: 35vh;
+
+    ol {
+        overflow: auto;
+        height: 100%;
+        background: $bg-color;
+        @include flex-child(3, grow, 0.025);
+        border-radius: 3px;
+        box-shadow: 1px 1px 2px 0px rgba($text-color, 1);
+    }
+}
+
+#selection_display {
+    background: $bg-color;
+    margin: 0.5rem 0.4vw 0 0.4vw;
+    border-radius: 3px;
+    height: 60vh;
+    box-shadow: inset 2px 2px 2px 0px rgba(black, 0.8);
+    overflow: auto;
+}
+
+// ENCOUNTER
+.encounter, .player {
+    width: 100%;
+    height: 100%;
+}
+
+.player {
+    @include flex-parent();
+
+    .player_name, .player_statblock, .player_basic {
+        width: 100%;
+        margin: 1rem;
+        text-align: center;
+        height: 10vh;
+    }
+
+    .player_name {
+        font-size: 2rem;
+        font-family: $sans;
+        font-weight: 500;
+    }
+
+    .stat {
+        @include flex-child(9);
+
+        label,input { 
+            display: block;
+            text-align: center;
+            width: 100%;
+            font-family: $sans-xnarrow;
+        }
+
+        label {
+            margin: 0;
+            padding: 0.15rem;
+            line-height: 1;
+            font-weight: $light;
+        }
+
+        input {
+            font-family: $serif;
+            font-weight: $bold;
+            font-size: 1.5rem;
+        }
+    }
+
+    .player_basic {
+        height: 25vh;
+        @include flex-parent();
+
+        textarea, .stat { @include flex-child(2); height: 100%; }
+        textarea { border: 1px solid $text-color; }
+        input { height: 100%; font-size: 9rem;}
+    }
+
+}
+
+
+
+
 .creature_ability {
     border: 1px solid;
 }

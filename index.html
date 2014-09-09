@@ -21,84 +21,85 @@
 
     <script type="text/x-handlebars" data-template-name="user">
         <section id="user_page">
-            {{#link-to "index"}}Home{{/link-to}}
-            <h6>{{user_name}}</h6>
+            <section id="selection_panels">
+                <ol>
+                    {{#each encounters}}
+                    <li>
+                        {{#link-to "encounter" this}}
+                            {{encounter_name}}
+                        {{/link-to}}
+                    </li>
+                    {{/each}}
 
-            <ol>
-                {{#each encounters}}
-                <li>
-                    {{#link-to "encounter" this}}
-                        {{encounter_name}}
-                    {{/link-to}}
-                </li>
-                {{/each}}
+                    <li>
+                        {{#view App.showHide isVisible=showNewEncounterButton}}
+                            <button {{action "toggle_new_encounter"}}>+</button>
+                        {{/view}}
 
-                <li>
-                    {{#view App.showHide isVisible=showNewEncounterButton}}
-                        <button {{action "toggle_new_encounter"}}>+</button>
-                    {{/view}}
+                        {{#view App.showHide isVisible=showNewEncounter class="newEncounter"}}
+                            <form {{action "new_encounter" this this.newEncounterName on="submit"}}>
+                                {{input value=newEncounterName}}
+                            </form>
+                            <button {{action "toggle_new_encounter"}}>-</button>
+                        {{/view}}
+                    </li>
+                </ol>
 
-                    {{#view App.showHide isVisible=showNewEncounter class="newEncounter"}}
-                        <form {{action "new_encounter" this this.newEncounterName on="submit"}}>
-                            {{input value=newEncounterName}}
-                        </form>
-                        <button {{action "toggle_new_encounter"}}>-</button>
-                    {{/view}}
-                </li>
-            </ol>
+                <ol>
+                    {{#each creatures}}
+                    <li>
+                        {{#link-to "creature" this}}
+                            {{#view App.drag content=this}}{{creature_name}}{{/view}}
+                        {{/link-to}}
+                    </li>
+                    {{/each}}
 
-            <ol>
-                {{#each creatures}}
-                <li>
-                    {{#link-to "creature" this}}
-                        {{#view App.drag content=this}}{{creature_name}}{{/view}}
-                    {{/link-to}}
-                </li>
-                {{/each}}
+                    <li>
+                        {{#view App.showHide isVisible=showNewCreatureButton}}
+                            <button {{action "toggle_new_creature"}}>+</button>
+                        {{/view}}
 
-                <li>
-                    {{#view App.showHide isVisible=showNewCreatureButton}}
-                        <button {{action "toggle_new_creature"}}>+</button>
-                    {{/view}}
+                        {{#view App.showHide isVisible=showNewCreature class="newCreature"}}
+                            <form {{action "new_creature" this this.newCreatureName on="submit"}}>
+                                {{input value=newCreatureName}}
+                            </form>
+                            <button {{action "toggle_new_creature"}}>-</button>
+                        {{/view}}
+                    </li>
+                </ol>
 
-                    {{#view App.showHide isVisible=showNewCreature class="newCreature"}}
-                        <form {{action "new_creature" this this.newCreatureName on="submit"}}>
-                            {{input value=newCreatureName}}
-                        </form>
-                        <button {{action "toggle_new_creature"}}>-</button>
-                    {{/view}}
-                </li>
-            </ol>
+                <ol>
+                    {{#each players}}
+                    <li>
+                        {{#link-to "player" this}}
+                            {{#view App.drag content=this}}{{player_name}}{{/view}}
+                        {{/link-to}}
+                    </li>
+                    {{/each}}
 
-            <ol>
-                {{#each players}}
-                <li>
-                    {{#link-to "player" this}}
-                        {{#view App.drag content=this}}{{player_name}}{{/view}}
-                    {{/link-to}}
-                </li>
-                {{/each}}
+                    <li>
+                        {{#view App.showHide isVisible=showNewPlayerButton}}
+                            <button {{action "toggle_new_player"}}>+</button>
+                        {{/view}}
 
-                <li>
-                    {{#view App.showHide isVisible=showNewPlayerButton}}
-                        <button {{action "toggle_new_player"}}>+</button>
-                    {{/view}}
+                        {{#view App.showHide isVisible=showNewPlayer class="newPlayer"}}
+                            <form {{action "new_player" this this.newPlayerName on="submit"}}>
+                                {{input value=newPlayerName}}
+                            </form>
+                            <button {{action "toggle_new_player"}}>-</button>
+                        {{/view}}
+                    </li>
+                </ol>
+            </section>
 
-                    {{#view App.showHide isVisible=showNewPlayer class="newPlayer"}}
-                        <form {{action "new_player" this this.newPlayerName on="submit"}}>
-                            {{input value=newPlayerName}}
-                        </form>
-                        <button {{action "toggle_new_player"}}>-</button>
-                    {{/view}}
-                </li>
-            </ol>
-
+            <section id="selection_display">
             {{outlet}}
+            </section>
         </section>
     </script>
 
     <script type="text/x-handlebars" data-template-name="encounter">
-        {{#view App.drop}}Drop here!
+        {{#view App.drop class="encounter"}}Drop here!
             {{#each players}}
                 {{player_name}}
             {{/each}}
@@ -109,48 +110,53 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="player">
-        <section class="player_basic">
+        <section class="player">
             {{input value=player_name placeholder="Name" class="player_name"}}
-            {{textarea value=notes placeholder="Notes" class="player_notes"}}
-        </section>
 
-        <section class="player_statblock">
-            <div class="stat">
-                <label>STR</label>
-                {{input value=strength type="number" placeholder="STR"}}
-            </div>
-            <div class="stat">
-                <label>CON</label>
-                {{input value=constitution type="number" placeholder="CON"}}
-            </div>
-            <div class="stat">
-                <label>DEX</label>
-                {{input value=dexterity type="number" placeholder="DEX"}}
-            </div>
-            <div class="stat">
-                <label>INT</label>
-                {{input value=intelligence type="number" placeholder="INT"}}
-            </div>
-            <div class="stat">
-                <label>WIS</label>
-                {{input value=wisdom type="number" placeholder="WIS"}}
-            </div>
-            <div class="stat">
-                <label>CHA</label>
-                {{input value=charisma type="number" placeholder="CHA"}}
-            </div>
-            <div class="stat">
-                <label>AC</label>
-                {{input value=armor type="number" placeholder="AC"}}
-            </div>
-            <div class="stat">
-                <label>INIT</label>
-                {{input value=initiative type="number" placeholder="Initiative"}}
-            </div>
-            <div class="stat">
-                <label>SPEED</label>
-                {{input value=speed type="number" placeholder="Speed"}}
-            </div>
+            <section class="player_statblock">
+                <div class="stat">
+                    {{input value=strength type="number"}}
+                    <label>Strength</label>
+                </div>
+                <div class="stat">
+                    {{input value=constitution type="number"}}
+                    <label>Constitution</label>                
+                </div>
+                <div class="stat">
+                    {{input value=dexterity type="number"}}
+                    <label>Dexterity</label>
+                </div>
+                <div class="stat">
+                    {{input value=intelligence type="number"}}
+                    <label>Intelligence</label>
+                </div>
+                <div class="stat">
+                    {{input value=wisdom type="number"}}
+                    <label>Wisdom</label>
+                </div>
+                <div class="stat">
+                    {{input value=charisma type="number"}}
+                    <label>Charisma</label>
+                </div>
+                <div class="stat">
+                    {{input value=armor type="number"}}
+                    <label>Armor</label>
+                </div>
+                <div class="stat">
+                    {{input value=speed type="number"}}
+                    <label>Speed</label>
+                </div>
+            </section>
+
+            <section class="player_basic">
+                {{textarea value=notes placeholder="Notes" class="player_notes"}}
+                <div class="stat">
+                    {{input value=initiative type="number"}}
+                    <label>Initiative</label>
+                </div>
+                </div>
+            </section>
+
         </section>
     </script>
 
@@ -172,39 +178,39 @@
 
         <section class="creature_statblock">
             <div class="stat"> 
-                <label>STR</label>
-                {{input value=strength type="number" placeholder="STR"}}
+                <label>Strength</label>
+                {{input value=strength type="number" placeholder="Strength"}}
             </div>
             <div class="stat">
-                <label>CON</label>
+                <label>Constitution</label>
                 {{input value=constitution type="number" placeholder="CON"}}
             </div>
             <div class="stat">
-                <label>DEX</label>
+                <label>Dexterity</label>
                 {{input value=dexterity type="number" placeholder="DEX"}}
             </div>
             <div class="stat">
-                <label>INT</label>
+                <label>Intelligence</label>
                 {{input value=intelligence type="number" placeholder="INT"}}
             </div>
             <div class="stat">
-                <label>WIS</label>
+                <label>Wisdom</label>
                 {{input value=wisdom type="number" placeholder="WIS"}}
             </div>
             <div class="stat">
-                <label>CHA</label>
+                <label>Charisma</label>
                 {{input value=charisma type="number" placeholder="CHA"}}
             </div>
             <div class="stat">
-                <label>AC</label>
+                <label>Armor</label>
                 {{input value=armor type="number" placeholder="AC"}}
             </div>
             <div class="stat">
-                <label>SPEED</label>
+                <label>Speed</label>
                 {{input value=speed type="number" placeholder="Speed"}}
             </div>
             <div class="stat">
-                <label>INIT</label>
+                <label>Initiative</label>
                 {{input value=initiative type="number" placeholder="Initiative"}}
             </div>
         </section>
