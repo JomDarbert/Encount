@@ -86,8 +86,8 @@ textarea {
 }
 
 button {
-    border: 1px solid darken($blue,5%);
-    background: darken($blue,5%);
+    border: 2px solid $green;
+    background: $green;
     color: $bg-color;
     font-family: $sans;
 }
@@ -102,7 +102,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 button:focus,button:hover,button.active {
     background-color: $bg-color;
-    border-color: darken($blue,5%);
+    border-color: darken($green,5%);
     color: $text-color;
 }
 

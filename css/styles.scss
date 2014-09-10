@@ -2,7 +2,6 @@
 
 // USER PAGE
 #user_page {
-    background: $blue;
     padding: 0.5rem;
     height: 100vh;
     width: 100%;
@@ -14,23 +13,62 @@
     border: none;
     box-shadow: none;
     height: 35vh;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $text-color;
+
+    h5, input, a, button, li { 
+        text-align: center;
+        color: $text-color;
+    }
 
     ol {
         overflow: auto;
         height: 100%;
-        background: $bg-color;
         @include flex-child(3, grow, 0.025);
-        border-radius: 3px;
-        box-shadow: 1px 1px 2px 0px rgba($text-color, 1);
     }
+
+    li {
+        list-style: none;
+        margin: 0.3rem 0;
+        padding: 0.2rem;
+        &:last-child {
+            margin-top: 0.5rem;
+        }
+
+        &:hover {
+            background: lighten($blue,20%);
+        }
+    }
+
+    a {
+        font-style: normal;
+        text-decoration: none;
+        font-family: $sans-narrow;
+    }
+
+    button {
+        color: $bg-color;
+        font-weight: $bold;
+        font-size: 1.2rem;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        &:hover { color: $green; }
+    }
+
+    .searchbox {
+        width: 100%;
+        border: 1px solid $text-color;
+        border-radius: 3px;
+        margin-bottom: 1rem;
+    }
+
 }
 
 #selection_display {
     background: $bg-color;
-    margin: 0.5rem 0.4vw 0 0.4vw;
-    border-radius: 3px;
     height: 60vh;
-    box-shadow: inset 2px 2px 2px 0px rgba(black, 0.8);
     overflow: auto;
 }
 
@@ -45,9 +83,7 @@
 
     .player_name, .player_statblock, .player_basic {
         width: 100%;
-        margin: 1rem;
         text-align: center;
-        height: 10vh;
     }
 
     .player_name {
@@ -58,6 +94,7 @@
 
     .stat {
         @include flex-child(9);
+        margin: 1rem 0;
 
         label,input { 
             display: block;
@@ -77,6 +114,7 @@
             font-family: $serif;
             font-weight: $bold;
             font-size: 1.5rem;
+            padding: 0;
         }
     }
 

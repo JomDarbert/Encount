@@ -23,6 +23,13 @@
         <section id="user_page">
             <section id="selection_panels">
                 <ol>
+                    <h5>Encounters</h5>
+                    {{input type="search" 
+                            class="searchbox"
+                            placeholder="Find Encounter"
+                            value=encounterSearchTerm 
+                            action="find_encounter"
+                    }}
                     {{#each encounters}}
                     <li>
                         {{#link-to "encounter" this}}
