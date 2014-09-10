@@ -30,13 +30,6 @@
                             value=encounterSearchTerm 
                             action="find_encounter"
                     }}
-                    {{#each encounters}}
-                    <li>
-                        {{#link-to "encounter" this}}
-                            {{encounter_name}}
-                        {{/link-to}}
-                    </li>
-                    {{/each}}
 
                     <li>
                         {{#view App.showHide isVisible=showNewEncounterButton}}
@@ -44,15 +37,46 @@
                         {{/view}}
 
                         {{#view App.showHide isVisible=showNewEncounter class="newEncounter"}}
-                            <form {{action "new_encounter" this this.newEncounterName on="submit"}}>
+                            <form class="new_item" {{action "new_encounter" this this.newEncounterName on="submit"}}>
                                 {{input value=newEncounterName}}
                             </form>
                             <button {{action "toggle_new_encounter"}}>-</button>
                         {{/view}}
                     </li>
+
+                    {{#each encounters}}
+                    <li>
+                        {{#link-to "encounter" this}}
+                            <h5>{{encounter_name}}</h5>
+                            <p>Players: {{players.length}}</p>
+                            <p>Creatures: {{creatures.length}}</p>
+                        {{/link-to}}
+                    </li>
+                    {{/each}}
                 </ol>
 
                 <ol>
+                    <h5>Creatures</h5>
+                    {{input type="search" 
+                            class="searchbox"
+                            placeholder="Find Creature"
+                            value=creatureSearchTerm 
+                            action="find_creature"
+                    }}
+
+                    <li>
+                        {{#view App.showHide isVisible=showNewCreatureButton}}
+                            <button {{action "toggle_new_creature"}}>+</button>
+                        {{/view}}
+
+                        {{#view App.showHide isVisible=showNewCreature class="newCreature"}}
+                            <form class="new_item" {{action "new_creature" this this.newCreatureName on="submit"}}>
+                                {{input value=newCreatureName}}
+                            </form>
+                            <button {{action "toggle_new_creature"}}>-</button>
+                        {{/view}}
+                    </li>
+
                     {{#each creatures}}
                     <li>
                         {{#link-to "creature" this}}
@@ -61,28 +85,16 @@
                     </li>
                     {{/each}}
 
-                    <li>
-                        {{#view App.showHide isVisible=showNewCreatureButton}}
-                            <button {{action "toggle_new_creature"}}>+</button>
-                        {{/view}}
-
-                        {{#view App.showHide isVisible=showNewCreature class="newCreature"}}
-                            <form {{action "new_creature" this this.newCreatureName on="submit"}}>
-                                {{input value=newCreatureName}}
-                            </form>
-                            <button {{action "toggle_new_creature"}}>-</button>
-                        {{/view}}
-                    </li>
                 </ol>
 
                 <ol>
-                    {{#each players}}
-                    <li>
-                        {{#link-to "player" this}}
-                            {{#view App.drag content=this}}{{player_name}}{{/view}}
-                        {{/link-to}}
-                    </li>
-                    {{/each}}
+                    <h5>Players</h5>
+                    {{input type="search" 
+                            class="searchbox"
+                            placeholder="Find Player"
+                            value=playerSearchTerm 
+                            action="find_player"
+                    }}
 
                     <li>
                         {{#view App.showHide isVisible=showNewPlayerButton}}
@@ -90,12 +102,20 @@
                         {{/view}}
 
                         {{#view App.showHide isVisible=showNewPlayer class="newPlayer"}}
-                            <form {{action "new_player" this this.newPlayerName on="submit"}}>
+                            <form class="new_item" {{action "new_player" this this.newPlayerName on="submit"}}>
                                 {{input value=newPlayerName}}
                             </form>
                             <button {{action "toggle_new_player"}}>-</button>
                         {{/view}}
                     </li>
+
+                    {{#each players}}
+                    <li>
+                        {{#link-to "player" this}}
+                            {{#view App.drag content=this}}{{player_name}}{{/view}}
+                        {{/link-to}}
+                    </li>
+                    {{/each}}
                 </ol>
             </section>
 
