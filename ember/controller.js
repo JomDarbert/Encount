@@ -7,7 +7,17 @@ App.UserController = Ember.ObjectController.extend({
   showNewEncounterButton: true,
   showNewCreatureButton: true,
   showNewPlayerButton: true,
+  encounterFilter: null,
+  filteredEncounters: (function() {
+    return console.log(this.get("encounterQuery"));
+  }).property("encounterQuery"),
   actions: {
+    find_encounter: function() {
+      var query;
+      query = this.get("encounterQuery");
+      this.set("encounterFilter", query);
+      console.log(query);
+    },
     new_encounter: function(user, name) {
       var newEncounter;
       newEncounter = this.store.createRecord("encounter", {

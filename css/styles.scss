@@ -45,7 +45,7 @@
     li:not(:first-child):not(:nth-child(3)) {
         border: 1px solid rgba($text-color,0.5);
         @include flex-child(2);
-
+        @include flex-parent();
 
         h5 { font-size: 1rem; }
         p { 

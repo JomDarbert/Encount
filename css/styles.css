@@ -660,6 +660,12 @@ a:hover {
   flex: 1 0 47.5%;
   max-width: 47.5%;
   display: inline-block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
 }
 #selection_panels li:not(:first-child):not(:nth-child(3)) h5 {
   font-size: 1rem;

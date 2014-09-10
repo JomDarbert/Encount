@@ -8,8 +8,19 @@ App.UserController = Ember.ObjectController.extend(
     showNewEncounterButton: true
     showNewCreatureButton: true
     showNewPlayerButton: true
+    encounterFilter: null
+
+    filteredEncounters: (->
+        console.log @get "encounterQuery"
+    ).property("encounterQuery")
 
     actions:
+        find_encounter: ->
+            query = @get "encounterQuery"
+            @set "encounterFilter", query
+            console.log query
+            return
+
         new_encounter: (user, name) ->
             newEncounter = @store.createRecord("encounter",
                 encounter_name: name
@@ -35,8 +46,6 @@ App.UserController = Ember.ObjectController.extend(
             @set "showNewCreatureButton", true
             @set "newCreatureName", ""
             return
-
-
 
         new_player: (user, name) ->
             newPlayer = @store.createRecord("player",
