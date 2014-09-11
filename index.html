@@ -28,8 +28,6 @@
                             class="searchbox"
                             placeholder="Find Encounter"
                             value=encounterQuery 
-                            action="find_encounter"
-                            on="keyPress"
                     }}
 
                     <li>
@@ -45,12 +43,14 @@
                         {{/view}}
                     </li>
 
-                    {{#each encounters}}
+                    {{#each filteredEncounters}}
                     <li>
                         {{#link-to "encounter" this}}
+                            {{#view App.drop}}
                             <h5>{{encounter_name}}</h5>
                             <p>Players: {{players.length}}</p>
                             <p>Creatures: {{creatures.length}}</p>
+                            {{/view}}
                         {{/link-to}}
                     </li>
                     {{/each}}
@@ -61,8 +61,7 @@
                     {{input type="search" 
                             class="searchbox"
                             placeholder="Find Creature"
-                            value=creatureSearchTerm 
-                            action="find_creature"
+                            value=creatureQuery
                     }}
 
                     <li>
@@ -78,7 +77,7 @@
                         {{/view}}
                     </li>
 
-                    {{#each creatures}}
+                    {{#each filteredCreatures}}
                     <li>
                         {{#link-to "creature" this}}
                             {{#view App.drag content=this}}{{creature_name}}{{/view}}
@@ -93,8 +92,7 @@
                     {{input type="search" 
                             class="searchbox"
                             placeholder="Find Player"
-                            value=playerSearchTerm 
-                            action="find_player"
+                            value=playerQuery 
                     }}
 
                     <li>
@@ -110,7 +108,7 @@
                         {{/view}}
                     </li>
 
-                    {{#each players}}
+                    {{#each filteredPlayers}}
                     <li>
                         {{#link-to "player" this}}
                             {{#view App.drag content=this}}{{player_name}}{{/view}}

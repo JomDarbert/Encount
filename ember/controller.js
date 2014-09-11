@@ -9,23 +9,49 @@ App.UserController = Ember.ObjectController.extend({
   showNewPlayerButton: true,
   encounterFilter: null,
   filteredEncounters: (function() {
-    return console.log(this.get("encounterQuery"));
-  }).property("encounterQuery"),
+    var query, results;
+    query = this.get("encounterQuery");
+    results = this.get("content.encounters");
+    if (query) {
+      results = results.filter(function(e) {
+        return e.get("encounter_name").toLowerCase().indexOf(query.toLowerCase()) > -1;
+      });
+    }
+    return results;
+  }).property("content", "encounterQuery"),
+  filteredCreatures: (function() {
+    var query, results;
+    query = this.get("creatureQuery");
+    results = this.get("content.creatures");
+    if (query) {
+      results = results.filter(function(e) {
+        return e.get("creature_name").toLowerCase().indexOf(query.toLowerCase()) > -1;
+      });
+    }
+    return results;
+  }).property("content", "creatureQuery"),
+  filteredPlayers: (function() {
+    var query, results;
+    query = this.get("playerQuery");
+    results = this.get("content.players");
+    if (query) {
+      results = results.filter(function(e) {
+        return e.get("player_name").toLowerCase().indexOf(query.toLowerCase()) > -1;
+      });
+    }
+    return results;
+  }).property("content", "playerQuery"),
   actions: {
-    find_encounter: function() {
-      var query;
-      query = this.get("encounterQuery");
-      this.set("encounterFilter", query);
-      console.log(query);
-    },
     new_encounter: function(user, name) {
       var newEncounter;
       newEncounter = this.store.createRecord("encounter", {
         encounter_name: name,
         user: user
       });
-      newEncounter.save();
-      user.get("encounters").pushObject(newEncounter);
+      user.get("encounters").then(function(encounters) {
+        encounters.pushObject(newEncounter);
+        return user.save();
+      });
       this.set("showNewEncounter", false);
       this.set("showNewEncounterButton", true);
       this.set("newEncounterName", "");
@@ -36,8 +62,10 @@ App.UserController = Ember.ObjectController.extend({
         creature_name: name,
         user: user
       });
-      newCreature.save();
-      user.get("creatures").pushObject(newCreature);
+      user.get("creatures").then(function(creatures) {
+        creatures.pushObject(newCreature);
+        return user.save();
+      });
       this.set("showNewCreature", false);
       this.set("showNewCreatureButton", true);
       this.set("newCreatureName", "");
@@ -48,8 +76,10 @@ App.UserController = Ember.ObjectController.extend({
         player_name: name,
         user: user
       });
-      newPlayer.save();
-      user.get("players").pushObject(newPlayer);
+      user.get("players").then(function(players) {
+        players.pushObject(newPlayer);
+        return user.save();
+      });
       this.set("showNewPlayer", false);
       this.set("showNewPlayerButton", true);
       this.set("newPlayerName", "");
@@ -78,8 +108,10 @@ App.CreatureController = Ember.ObjectController.extend({
         ability_name: name,
         creature: creature
       });
-      newAbility.save();
-      creature.get("abilities").pushObject(newAbility);
+      creature.get("abilities").then(function(abilities) {
+        abilities.pushObject(newAbility);
+        return creature.save();
+      });
       this.set("showNewAbility", false);
       this.set("showNewAbilityButton", true);
       this.set("newAbilityName", "");

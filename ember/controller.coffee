@@ -11,23 +11,47 @@ App.UserController = Ember.ObjectController.extend(
     encounterFilter: null
 
     filteredEncounters: (->
-        console.log @get "encounterQuery"
-    ).property("encounterQuery")
+        query = @get "encounterQuery"
+        results = @get "content.encounters"
+
+        if query
+            results = results.filter((e) ->
+                e.get("encounter_name").toLowerCase().indexOf(query.toLowerCase()) > -1
+            )
+        return results
+    ).property("content", "encounterQuery")
+
+    filteredCreatures: (->
+        query = @get "creatureQuery"
+        results = @get "content.creatures"
+
+        if query
+            results = results.filter((e) ->
+                e.get("creature_name").toLowerCase().indexOf(query.toLowerCase()) > -1
+            )
+        return results
+    ).property("content", "creatureQuery")
+
+    filteredPlayers: (->
+        query = @get "playerQuery"
+        results = @get "content.players"
+
+        if query
+            results = results.filter((e) ->
+                e.get("player_name").toLowerCase().indexOf(query.toLowerCase()) > -1
+            )
+        return results
+    ).property("content", "playerQuery")
 
     actions:
-        find_encounter: ->
-            query = @get "encounterQuery"
-            @set "encounterFilter", query
-            console.log query
-            return
-
         new_encounter: (user, name) ->
             newEncounter = @store.createRecord("encounter",
                 encounter_name: name
                 user: user
             )
-            newEncounter.save()
-            user.get("encounters").pushObject newEncounter
+            user.get("encounters").then (encounters) ->
+                encounters.pushObject newEncounter
+                user.save()
 
             @set "showNewEncounter", false
             @set "showNewEncounterButton", true
@@ -39,8 +63,9 @@ App.UserController = Ember.ObjectController.extend(
                 creature_name: name
                 user: user
             )
-            newCreature.save()
-            user.get("creatures").pushObject newCreature
+            user.get("creatures").then (creatures) ->
+                creatures.pushObject newCreature
+                user.save()
 
             @set "showNewCreature", false
             @set "showNewCreatureButton", true
@@ -52,8 +77,9 @@ App.UserController = Ember.ObjectController.extend(
                 player_name: name
                 user: user
             )
-            newPlayer.save()
-            user.get("players").pushObject newPlayer
+            user.get("players").then (players) ->
+                players.pushObject newPlayer
+                user.save()
 
             @set "showNewPlayer", false
             @set "showNewPlayerButton", true
@@ -87,8 +113,9 @@ App.CreatureController = Ember.ObjectController.extend(
                 ability_name: name
                 creature: creature
             )
-            newAbility.save()
-            creature.get("abilities").pushObject newAbility
+            creature.get("abilities").then (abilities) ->
+                abilities.pushObject newAbility
+                creature.save()
 
             @set "showNewAbility", false
             @set "showNewAbilityButton", true
