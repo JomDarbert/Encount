@@ -15,6 +15,7 @@ App.Encounter = DS.Model.extend
 
 App.Player = DS.Model.extend
     player_name: DS.attr "string" 
+    level: DS.attr "number"
     initiative: DS.attr "number"
     strength: DS.attr "number"
     constitution: DS.attr "number"
@@ -30,6 +31,7 @@ App.Player = DS.Model.extend
 
 App.Creature = DS.Model.extend
     creature_name: DS.attr "string" 
+    level: DS.attr "number"
     hp_min: DS.attr "number"
     hp_max: DS.attr "number" 
     ac: DS.attr "number" 

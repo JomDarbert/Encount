@@ -2,99 +2,90 @@
 
 // USER PAGE
 #user_page {
-    padding: 0.5rem;
-    height: 100vh;
     width: 100%;
 }
 
 #selection_panels {
     @include flex-parent();
-    box-shadow: 0px 1px 1px 0px rgba(black, 1);
     border: none;
-    box-shadow: none;
-    height: 35vh;
-    min-height: 250px;
     padding-bottom: 20px;
     border-bottom: 3px solid $text-color;
+    height: 55vh;
 
     h5, input, a, button, li { 
         text-align: center;
-        color: $text-color;
         width: 100%;
     }
 
-    ol {
-        overflow: auto;
-        height: 100%;
+    .panel {
         @include flex-child(3, grow, 0.025);
         @include flex-parent();
-    }
-
-    li {
-        list-style: none;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        border-radius: 3px;
-        min-height: 35px;
+        height: 50vh;
         overflow: hidden;
     }
 
-    li:first-of-type {
-        margin: 0.5rem 0;
-    }
-
-    li:not(:first-child):not(:nth-child(3)) {
-        border: 1px solid rgba($text-color,0.5);
-        @include flex-child(2);
-        @include flex-parent();
-
-        h5 { font-size: 1rem; }
-        p { 
-            font-size: 0.8rem; 
-            font-family: $sans-xnarrow; 
-            font-weight: $book;
-            margin: 0;
-        }
-    }
-
-    a {
-        font-style: normal;
-        text-decoration: none;
-        font-family: $sans-narrow;
-    }
-
-    button {
-        color: $bg-color;
-        font-weight: $bold;
-        font-size: 1.2rem;
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        &:hover { color: $green; }
-    }
-
-    input,form,button { display: inline-block; }
-    .new_item { 
-        width: 50%;
-        margin-left: 30px;
-        input { width: 100%; }
+    .searchbox, .new_item { 
+        @include flex-child(1); 
+        @include flex-parent(row,wrap,center);
+        overflow: hidden;
+        height: 35px;
     }
 
     .searchbox {
-        width: 80%;
-        margin-left: 10%;
+        border: 1px solid rgba($text-color, 0.5);
+        border-radius: 3px;
+        &:focus { border: 2px solid darken($blue,10%); }
+    }
+
+    button { 
+        width: 30px; height: 30px;
+        border-radius: 50%;
+        font-weight: $semi-bold;
+        font-size: 1.3rem;
+        line-height: 0;
+        &:hover {color: $green;}
+        &.red { 
+            background: $red; border-color: $red; 
+            &:hover {color: $red; background: $bg-color;}
+        }
+    }
+
+    .close {
+        width: 100%;
+        @include flex-parent();
+        input, form { height: 30px;}
+        form { height: 30px; width: 70%; margin: 0 auto; display: inline-block; }
+    }
+
+    ol {
+        @include flex-parent();
+        width: 100%;
+        height: 25vh;
+        overflow: auto;
+    }
+
+    li {
+        @include flex-child(2);
+        overflow: hidden;
+        list-style: none;
         border: 1px solid $text-color;
         border-radius: 3px;
-        margin-bottom: 0.25rem;
+
+        a { 
+            font-style: normal;
+            text-decoration: none;
+            color: $text-color;
+        }
+        h5,p { margin: 0; }
+        h5 {font-size: 1rem; font-family: $sans-xnarrow; font-weight: $medium; }
+        p { font-size: 0.7rem; font-family: $sans-xnarrow; font-weight: $book; }
     }
 
 }
 
 #selection_display {
     background: $bg-color;
-    height: 60vh;
+    height: 45vh;
     overflow: auto;
 }
 
