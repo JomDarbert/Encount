@@ -56,27 +56,25 @@
                 </ol>
             </div>
             <div class="panel">
+                <h5>Creatures</h5>
+                {{input type="search" 
+                        class="searchbox"
+                        placeholder="Find Creature"
+                        value=creatureQuery
+                }}
+                <div class="new_item">
+                    {{#view App.showHide isVisible=showNewCreatureButton class="open"}}
+                        <button {{action "toggle_new_creature"}}>+</button>
+                    {{/view}}
+
+                    {{#view App.showHide isVisible=showNewCreature class="close"}}
+                        <form {{action "new_creature" this this.newCreatureName on="submit"}}>
+                            {{input value=newCreatureName}}
+                        </form>
+                        <button {{action "toggle_new_creature"}} class="red">-</button>
+                    {{/view}}
+                </div>
                 <ol>
-                    <h5>Creatures</h5>
-                    {{input type="search" 
-                            class="searchbox"
-                            placeholder="Find Creature"
-                            value=creatureQuery
-                    }}
-
-                    <li>
-                        {{#view App.showHide isVisible=showNewCreatureButton}}
-                            <button {{action "toggle_new_creature"}}>+</button>
-                        {{/view}}
-
-                        {{#view App.showHide isVisible=showNewCreature class="newCreature"}}
-                            <form class="new_item" {{action "new_creature" this this.newCreatureName on="submit"}}>
-                                {{input value=newCreatureName}}
-                            </form>
-                            <button {{action "toggle_new_creature"}}>-</button>
-                        {{/view}}
-                    </li>
-
                     {{#each filteredCreatures}}
                     <li>
                         {{#link-to "creature" this}}
@@ -91,27 +89,25 @@
                 </ol>
             </div>
             <div class="panel">
+                <h5>Players</h5>
+                {{input type="search" 
+                        class="searchbox"
+                        placeholder="Find Player"
+                        value=playerQuery 
+                }}
+                <div class="new_item">
+                    {{#view App.showHide isVisible=showNewPlayerButton class="open"}}
+                        <button {{action "toggle_new_player"}}>+</button>
+                    {{/view}}
+
+                    {{#view App.showHide isVisible=showNewPlayer class="newPlayer" class="close"}}
+                        <form {{action "new_player" this this.newPlayerName on="submit"}}>
+                            {{input value=newPlayerName}}
+                        </form>
+                        <button {{action "toggle_new_player"}} class="red">-</button>
+                    {{/view}}
+                </div>
                 <ol>
-                    <h5>Players</h5>
-                    {{input type="search" 
-                            class="searchbox"
-                            placeholder="Find Player"
-                            value=playerQuery 
-                    }}
-
-                    <li>
-                        {{#view App.showHide isVisible=showNewPlayerButton}}
-                            <button {{action "toggle_new_player"}}>+</button>
-                        {{/view}}
-
-                        {{#view App.showHide isVisible=showNewPlayer class="newPlayer"}}
-                            <form class="new_item" {{action "new_player" this this.newPlayerName on="submit"}}>
-                                {{input value=newPlayerName}}
-                            </form>
-                            <button {{action "toggle_new_player"}}>-</button>
-                        {{/view}}
-                    </li>
-
                     {{#each filteredPlayers}}
                     <li>
                         {{#link-to "player" this}}
