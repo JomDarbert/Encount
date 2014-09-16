@@ -24,16 +24,12 @@
         width: 100%;
     }
 
-    .panel {
-        @include flex-parent();
-        height: 100%;
-    }
+    .panel { @include flex-parent(); }
 
     .searchbox { 
         width: 80%;
-        margin-left: 10%;
-        margin-bottom: 10px;
-        height: 40px;
+        margin: 0 auto;
+        height: 35px;
         border: 1px solid rgba($text-color, 0.5);
         border-radius: 3px;
         &:focus { border: 2px solid darken($blue,10%); }
@@ -52,25 +48,16 @@
         }
     }
 
-    .new_item { padding: 0; }
-
-    .open, .close {@include flex-child(1);}
-
-    .close {
-        @include flex-parent();
-        input, form { height: 30px;}
-        form { height: 30px; width: 70%; margin: 0 auto; display: inline-block; }
-    }
-
     ol {
-        @include flex-parent(row,wrap,flex-start,flex-start,flex-start);
+        @include flex-parent();
         width: 100%;
         overflow: auto;
         max-height: 30vh;
+        margin: 0;
     }
 
     li {
-        @include flex-child(3);
+        @include flex-child(4);
         overflow: hidden;
         list-style: none;
         border: 1px solid $text-color;
@@ -85,6 +72,16 @@
         h5,p { margin: 0; }
         h5 {font-size: 1rem; font-family: $sans-xnarrow; font-weight: $medium; }
         p { font-size: 0.7rem; font-family: $sans-xnarrow; font-weight: $book; }
+    }
+
+    .new_item { @include flex-parent();}
+
+    .open, .close { @include flex-child(auto,grow,0,0);}
+
+    .close {
+        padding: 0 10%;
+        form { @include flex-child(auto,grow); }
+        button { @include flex-child(auto,shrink); }
     }
 
 }

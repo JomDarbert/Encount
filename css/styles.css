@@ -636,13 +636,11 @@ a:hover {
   justify-content: flex-start;
   align-content: flex-start;
   align-items: center;
-  height: 100%;
 }
 #selection_panels .searchbox {
   width: 80%;
-  margin-left: 10%;
-  margin-bottom: 10px;
-  height: 40px;
+  margin: 0 auto;
+  height: 35px;
   border: 1px solid rgba(66, 66, 66, 0.5);
   border-radius: 3px;
 }
@@ -668,49 +666,23 @@ a:hover {
   color: #d7431b;
   background: white;
 }
-#selection_panels .new_item {
-  padding: 0;
-}
-#selection_panels .open, #selection_panels .close {
-  margin: 2.5%;
-  padding: 2.5%;
-  flex: 1 0 95%;
-  max-width: 95%;
-  display: inline-block;
-}
-#selection_panels .close {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: center;
-}
-#selection_panels .close input, #selection_panels .close form {
-  height: 30px;
-}
-#selection_panels .close form {
-  height: 30px;
-  width: 70%;
-  margin: 0 auto;
-  display: inline-block;
-}
 #selection_panels ol {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   overflow: auto;
   max-height: 30vh;
+  margin: 0;
 }
 #selection_panels li {
-  margin: 0.83333%;
-  padding: 0.83333%;
-  flex: 1 0 31.66667%;
-  max-width: 31.66667%;
+  margin: 0.625%;
+  padding: 0.625%;
+  flex: 1 0 23.75%;
+  max-width: 23.75%;
   display: inline-block;
   overflow: hidden;
   list-style: none;
@@ -735,6 +707,26 @@ a:hover {
   font-size: 0.7rem;
   font-family: "GothamXNarrow";
   font-weight: 400;
+}
+#selection_panels .new_item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+}
+#selection_panels .open, #selection_panels .close {
+  flex: 1 0 auto;
+}
+#selection_panels .close {
+  padding: 0 10%;
+}
+#selection_panels .close form {
+  flex: 1 0 auto;
+}
+#selection_panels .close button {
+  flex: 0 1 auto;
 }
 
 #selection_display {
