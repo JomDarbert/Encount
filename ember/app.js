@@ -13,7 +13,9 @@ App.ApplicationAdapter = DS.FirebaseAdapter.extend(
 App.ApplicationSerializer = DS.FirebaseSerializer.extend()
  */
 
-App.showHide = Ember.View.extend();
+App.showHide = Ember.View.extend({
+  classNames: ['showHide']
+});
 
 App.drag = Ember.View.extend({
   attributeBindings: ['draggable'],

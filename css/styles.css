@@ -602,55 +602,47 @@ a:hover {
   color: #2b557d;
 }
 
-#user_page {
-  width: 100%;
-}
-
-#selection_panels {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: center;
-  border: none;
-  border-bottom: 3px solid #424242;
-}
-#selection_panels h5, #selection_panels input, #selection_panels a, #selection_panels button, #selection_panels li {
-  text-align: center;
-  width: 100%;
-}
-#selection_panels .panel {
-  margin: 0.41667%;
-  padding: 0.41667%;
-  flex: 1 0 32.5%;
-  max-width: 32.5%;
-  display: inline-block;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: center;
-  height: 50vh;
-  overflow: hidden;
-}
-#selection_panels .searchbox, #selection_panels .new_item {
-  margin: 2.5%;
-  padding: 2.5%;
-  flex: 1 0 95%;
-  max-width: 95%;
-  display: inline-block;
+#selection_buttons {
+  height: 5vh;
+  min-height: 60px;
+  max-height: 80px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
   align-items: center;
+}
+#selection_buttons button {
+  flex: 0 1 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: auto 2rem;
+}
+
+#selection_panels {
+  border: none;
+  max-height: 40vh;
   overflow: hidden;
-  height: 35px;
+}
+#selection_panels h5, #selection_panels input, #selection_panels a, #selection_panels button, #selection_panels li {
+  text-align: center;
+  width: 100%;
+}
+#selection_panels .panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+  height: 100%;
 }
 #selection_panels .searchbox {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 10px;
+  height: 40px;
   border: 1px solid rgba(66, 66, 66, 0.5);
   border-radius: 3px;
 }
@@ -676,8 +668,17 @@ a:hover {
   color: #d7431b;
   background: white;
 }
+#selection_panels .new_item {
+  padding: 0;
+}
+#selection_panels .open, #selection_panels .close {
+  margin: 2.5%;
+  padding: 2.5%;
+  flex: 1 0 95%;
+  max-width: 95%;
+  display: inline-block;
+}
 #selection_panels .close {
-  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -703,18 +704,19 @@ a:hover {
   align-items: flex-start;
   width: 100%;
   overflow: auto;
-  height: 25vh;
+  max-height: 30vh;
 }
 #selection_panels li {
-  margin: 1.25%;
-  padding: 1.25%;
-  flex: 1 0 47.5%;
-  max-width: 47.5%;
+  margin: 0.83333%;
+  padding: 0.83333%;
+  flex: 1 0 31.66667%;
+  max-width: 31.66667%;
   display: inline-block;
   overflow: hidden;
   list-style: none;
   border: 1px solid #424242;
   border-radius: 3px;
+  height: 70px;
 }
 #selection_panels li a {
   font-style: normal;
@@ -737,7 +739,7 @@ a:hover {
 
 #selection_display {
   background: white;
-  height: 45vh;
+  height: 50vh;
   overflow: auto;
 }
 

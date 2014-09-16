@@ -30,7 +30,7 @@
     align-items: $alignItems;
 }
 
-@mixin flex-child($numItems: auto, $mode: grow, $margin: 0.05) {
+@mixin flex-child($numItems: auto, $mode: grow, $width: 0, $margin: 0.05) {
     $g: 0;
     $s: 1;
     @if $mode == 'grow' {
@@ -38,8 +38,12 @@
         $s: 0;
     }
 
+    @if $width == 0 {
+        $width: auto;
+    }
+
     @if $numItems == 'auto' {
-        flex: $g $s auto;
+        flex: $g $s $width;
     } @else {
         $pct: (100%/$numItems)-($margin*(100%/$numItems));
         $space: ($margin*(100%/$numItems))/2;

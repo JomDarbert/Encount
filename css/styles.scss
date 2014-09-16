@@ -1,14 +1,23 @@
 @import "reset","base";
 
-// USER PAGE
-#user_page {
-    width: 100%;
+#selection_buttons {
+    height: 5vh;
+    min-height: 60px;
+    max-height: 80px;
+    @include flex-parent(row,wrap,center);
+
+    button {
+        @include flex-child(auto,shrink,40px);
+        height: 40px;
+        border-radius: 50%;
+        margin: auto 2rem;
+    }
 }
 
 #selection_panels {
-    @include flex-parent();
     border: none;
-    border-bottom: 3px solid $text-color;
+    max-height: 40vh;
+    overflow: hidden;
 
     h5, input, a, button, li { 
         text-align: center;
@@ -16,20 +25,15 @@
     }
 
     .panel {
-        @include flex-child(3, grow, 0.025);
         @include flex-parent();
-        height: 50vh;
-        overflow: hidden;
+        height: 100%;
     }
 
-    .searchbox, .new_item { 
-        @include flex-child(1); 
-        @include flex-parent(row,wrap,center);
-        overflow: hidden;
-        height: 35px;
-    }
-
-    .searchbox {
+    .searchbox { 
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 10px;
+        height: 40px;
         border: 1px solid rgba($text-color, 0.5);
         border-radius: 3px;
         &:focus { border: 2px solid darken($blue,10%); }
@@ -48,8 +52,11 @@
         }
     }
 
+    .new_item { padding: 0; }
+
+    .open, .close {@include flex-child(1);}
+
     .close {
-        width: 100%;
         @include flex-parent();
         input, form { height: 30px;}
         form { height: 30px; width: 70%; margin: 0 auto; display: inline-block; }
@@ -59,15 +66,16 @@
         @include flex-parent(row,wrap,flex-start,flex-start,flex-start);
         width: 100%;
         overflow: auto;
-        height: 25vh;
+        max-height: 30vh;
     }
 
     li {
-        @include flex-child(2);
+        @include flex-child(3);
         overflow: hidden;
         list-style: none;
         border: 1px solid $text-color;
         border-radius: 3px;
+        height: 70px;
 
         a { 
             font-style: normal;
@@ -83,7 +91,7 @@
 
 #selection_display {
     background: $bg-color;
-    height: 45vh;
+    height: 50vh;
     overflow: auto;
 }
 

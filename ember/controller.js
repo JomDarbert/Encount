@@ -1,6 +1,10 @@
 App.IndexController = Ember.ArrayController.extend();
 
 App.UserController = Ember.ObjectController.extend({
+  tagName: 'section',
+  showEncounter: false,
+  showCreature: false,
+  showPlayer: false,
   showNewEncounter: false,
   showNewCreature: false,
   showNewPlayer: false,
@@ -42,6 +46,26 @@ App.UserController = Ember.ObjectController.extend({
     return results;
   }).property("content", "playerQuery"),
   actions: {
+    show_encounter: function() {
+      this.set("showEncounter", true);
+      this.set("showCreature", false);
+      return this.set("showPlayer", false);
+    },
+    show_creature: function() {
+      this.set("showCreature", true);
+      this.set("showEncounter", false);
+      return this.set("showPlayer", false);
+    },
+    show_player: function() {
+      this.set("showPlayer", true);
+      this.set("showCreature", false);
+      return this.set("showEncounter", false);
+    },
+    show_none: function() {
+      this.set("showEncounter", false);
+      this.set("showCreature", false);
+      return this.set("showPlayer", false);
+    },
     new_encounter: function(user, name) {
       var newEncounter;
       newEncounter = this.store.createRecord("encounter", {

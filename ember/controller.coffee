@@ -2,6 +2,10 @@
 App.IndexController = Ember.ArrayController.extend()
 
 App.UserController = Ember.ObjectController.extend(
+    tagName: 'section'
+    showEncounter: false
+    showCreature: false
+    showPlayer: false
     showNewEncounter: false
     showNewCreature: false
     showNewPlayer: false
@@ -44,6 +48,26 @@ App.UserController = Ember.ObjectController.extend(
     ).property("content", "playerQuery")
 
     actions:
+        show_encounter: ->
+            @set "showEncounter", true
+            @set "showCreature", false
+            @set "showPlayer", false
+
+        show_creature: ->
+            @set "showCreature", true
+            @set "showEncounter", false
+            @set "showPlayer", false
+
+        show_player: ->
+            @set "showPlayer", true
+            @set "showCreature", false
+            @set "showEncounter", false
+
+        show_none: ->
+            @set "showEncounter", false
+            @set "showCreature", false
+            @set "showPlayer", false
+
         new_encounter: (user, name) ->
             newEncounter = @store.createRecord("encounter",
                 encounter_name: name

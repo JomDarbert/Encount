@@ -19,107 +19,101 @@
         </ol>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="user">
+    <script type="text/x-handlebars" data-template-name="user" class="test">
         <section id="user_page">
-            <section id="selection_panels">
-                <div class="panel">
-                    <h5>Encounters</h5>
-                    {{input type="search" 
-                            class="searchbox"
-                            placeholder="Find Encounter"
-                            value=encounterQuery 
-                    }}
-                    <div class="new_item">
-                        {{#view App.showHide isVisible=showNewEncounterButton class="open"}}
-                            <button {{action "toggle_new_encounter"}}>+</button>
-                        {{/view}}
+            <section id="selection_buttons">
+                <button {{action "show_encounter"}}>E</button>
+                <button {{action "show_creature"}}>C</button>
+                <button {{action "show_player"}}>P</button>
+                <button {{action "show_none"}}>Close</button>
+            </section>
 
-                        {{#view App.showHide isVisible=showNewEncounter class="close"}}
-                            <form {{action "new_encounter" this this.newEncounterName on="submit"}}>
-                                {{input value=newEncounterName}}
-                            </form>
-                            <button {{action "toggle_new_encounter"}} class="red">-</button>
-                        {{/view}}
-                    </div>
+            <section id="selection_panels">
+                {{#view App.showHide isVisible=showEncounter class="panel"}}
+                    <h5>Encounters</h5>
+                    {{input type="search" class="searchbox" placeholder="Find Encounter" value=encounterQuery}}
                     <ol>
-                    {{#each filteredEncounters}}
-                    <li>
-                        {{#view App.drag}}
-                            {{#link-to "encounter" this}}
+                        <li class="new_item">
+                            {{#view App.showHide isVisible=showNewEncounterButton class="open"}}
+                                <button {{action "toggle_new_encounter"}}>+</button>
+                            {{/view}}
+
+                            {{#view App.showHide isVisible=showNewEncounter class="close"}}
+                                <form {{action "new_encounter" this this.newEncounterName on="submit"}}>
+                                    {{input value=newEncounterName}}
+                                </form>
+                                <button {{action "toggle_new_encounter"}} class="red">-</button>
+                            {{/view}}
+                        </li>
+                        {{#each filteredEncounters}}
+                        <li>
+                            {{#view App.drag}}
+                                {{#link-to "encounter" this}}
                                     <h5>{{encounter_name}}</h5>
                                     <p>Players: {{players.length}}</p>
                                     <p>Creatures: {{creatures.length}}</p>
-                            {{/link-to}}
+                                {{/link-to}}
+                            {{/view}}
+                        </li>
+                        {{/each}}
+                    </ol>
+                {{/view}}
+                {{#view App.showHide isVisible=showCreature class="panel"}}
+                    <h5>Creatures</h5>
+                    {{input type="search" class="searchbox" placeholder="Find Creature" value=creatureQuery}}
+                    <div class="new_item">
+                        {{#view App.showHide isVisible=showNewCreatureButton class="open"}}
+                            <button {{action "toggle_new_creature"}}>+</button>
                         {{/view}}
-                    </li>
-                    {{/each}}
-                </ol>
-            </div>
-            <div class="panel">
-                <h5>Creatures</h5>
-                {{input type="search" 
-                        class="searchbox"
-                        placeholder="Find Creature"
-                        value=creatureQuery
-                }}
-                <div class="new_item">
-                    {{#view App.showHide isVisible=showNewCreatureButton class="open"}}
-                        <button {{action "toggle_new_creature"}}>+</button>
-                    {{/view}}
 
-                    {{#view App.showHide isVisible=showNewCreature class="close"}}
-                        <form {{action "new_creature" this this.newCreatureName on="submit"}}>
-                            {{input value=newCreatureName}}
-                        </form>
-                        <button {{action "toggle_new_creature"}} class="red">-</button>
-                    {{/view}}
-                </div>
-                <ol>
-                    {{#each filteredCreatures}}
-                    <li>
-                        {{#link-to "creature" this}}
-                            {{#view App.drag content=this}}
-                                <h5>{{creature_name}}</h5>
-                                <p>Level {{level}}</p>
-                            {{/view}}
-                        {{/link-to}}
-                    </li>
-                    {{/each}}
+                        {{#view App.showHide isVisible=showNewCreature class="close"}}
+                            <form {{action "new_creature" this this.newCreatureName on="submit"}}>
+                                {{input value=newCreatureName}}
+                            </form>
+                            <button {{action "toggle_new_creature"}} class="red">-</button>
+                        {{/view}}
+                    </div>
+                    <ol>
+                        {{#each filteredCreatures}}
+                        <li>
+                            {{#link-to "creature" this}}
+                                {{#view App.drag content=this}}
+                                    <h5>{{creature_name}}</h5>
+                                    <p>Level {{level}}</p>
+                                {{/view}}
+                            {{/link-to}}
+                        </li>
+                        {{/each}}
+                    </ol>
+                {{/view}}
+                {{#view App.showHide isVisible=showPlayer class="panel"}}
+                    <h5>Players</h5>
+                    {{input type="search" class="searchbox" placeholder="Find Player" value=playerQuery }} 
+                    <div class="new_item">
+                        {{#view App.showHide isVisible=showNewPlayerButton class="open"}}
+                            <button {{action "toggle_new_player"}}>+</button>
+                        {{/view}}
 
-                </ol>
-            </div>
-            <div class="panel">
-                <h5>Players</h5>
-                {{input type="search" 
-                        class="searchbox"
-                        placeholder="Find Player"
-                        value=playerQuery 
-                }}
-                <div class="new_item">
-                    {{#view App.showHide isVisible=showNewPlayerButton class="open"}}
-                        <button {{action "toggle_new_player"}}>+</button>
-                    {{/view}}
-
-                    {{#view App.showHide isVisible=showNewPlayer class="newPlayer" class="close"}}
-                        <form {{action "new_player" this this.newPlayerName on="submit"}}>
-                            {{input value=newPlayerName}}
-                        </form>
-                        <button {{action "toggle_new_player"}} class="red">-</button>
-                    {{/view}}
-                </div>
-                <ol>
-                    {{#each filteredPlayers}}
-                    <li>
-                        {{#link-to "player" this}}
-                            {{#view App.drag content=this}}
-                                <h5>{{player_name}}</h5>
-                                <p>Level {{level}}</p>
-                            {{/view}}
-                        {{/link-to}}
-                    </li>
-                    {{/each}}
-                </ol>
-            </div>
+                        {{#view App.showHide isVisible=showNewPlayer class="newPlayer" class="close"}}
+                            <form {{action "new_player" this this.newPlayerName on="submit"}}>
+                                {{input value=newPlayerName}}
+                            </form>
+                            <button {{action "toggle_new_player"}} class="red">-</button>
+                        {{/view}}
+                    </div>
+                    <ol>
+                        {{#each filteredPlayers}}
+                        <li>
+                            {{#link-to "player" this}}
+                                {{#view App.drag content=this}}
+                                    <h5>{{player_name}}</h5>
+                                    <p>Level {{level}}</p>
+                                {{/view}}
+                            {{/link-to}}
+                        </li>
+                        {{/each}}
+                    </ol>
+                {{/view}}
             </section>
 
             <section id="selection_display">
