@@ -19,12 +19,17 @@ $medium:    500;
 $semi-bold: 600;
 $bold:      700;
 
-$bg-color:   #fff;
-$text-color: #424242;
+$off-white:   #f7f7f7;
+$dark-grey: #2d3033;
 $blue:       #4D89C1;
+$teal:      #278998;
+$seafoam:   #31A480;
 $green:      #94D78E;
 $bright-green: #6CC644;
 $red:        #D7431B;
+$orange: #B24626;
+$yellow: #D7A627;
+$grey: #585A5B;
 
 /* BASE */
 * {box-sizing: border-box;}
@@ -35,8 +40,8 @@ html, body {
     font-family:    $serif;
     font-size:      $base-size;
     line-height:    $base-lineheight;
-    color:          $text-color;
-    background:     $bg-color;
+    color:          $dark-grey;
+    background:     $off-white;
     width:          100%;
     height:         100%;
     -webkit-font-smoothing: antialiased;
@@ -74,11 +79,15 @@ input, select, button, label, textarea {
     font-family: $sans-narrow;
     font-weight: $book;
     font-size: 90%;
-    color: darken($text-color,20%);    
+    color: $dark-grey;    
     outline: none;
     background: transparent;
-    border: none;
+    border-radius: 2px;
     padding: 0.25rem;
+}
+
+input, select, textarea {
+    border: 1px solid lighten($grey,30%);
 }
 
 textarea {
@@ -86,13 +95,17 @@ textarea {
 }
 
 button {
-    border: 2px solid $green;
-    background: $green;
-    color: $bg-color;
+    background: $seafoam;
+    color: $off-white;
     font-family: $sans;
+    border: none;
+    border-radius: 100px;
+    transition: 0.5s all;
+    box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 1px 0px;
+    padding: 0.6rem 1.2rem;
+
+    &:hover { background: darken($seafoam, 7%); }
 }
-
-
 
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
@@ -100,20 +113,13 @@ input[type=number]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-input:not([type='checkbox']) { 
-    border-bottom: 1px solid lighten($text-color,20%);
-    margin-bottom: 1px;
-}
-
 input,textarea,select {
-    &:active,&:focus,&.active, &:hover{
-        border-color: darken($blue,20%);
-        border-width: 2px;
-        margin-bottom: 0px;
+    &:active,&:focus,&.active {
+        border-color: darken($blue,10%);
     }
 }
 
 textarea {resize: none;}
 a,button {cursor: pointer; }
-a {color: $blue; font-style: italic; text-decoration: underline; font-weight: $medium; }
-a:hover{ color: darken($blue,20%); }
+a {color: $seafoam; font-style: italic; text-decoration: underline; font-weight: $medium; }
+a:hover{ color: darken($seafoam,20%); }

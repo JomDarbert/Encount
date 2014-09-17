@@ -467,8 +467,8 @@ html, body {
   font-family: "MercuryG1";
   font-size: 18px;
   line-height: 1.5;
-  color: #424242;
-  background: white;
+  color: #2d3033;
+  background: #f7f7f7;
   width: 100%;
   height: 100%;
   -webkit-font-smoothing: antialiased;
@@ -542,11 +542,15 @@ input, select, button, label, textarea {
   font-family: "GothamNarrow";
   font-weight: 400;
   font-size: 90%;
-  color: #0f0f0f;
+  color: #2d3033;
   outline: none;
   background: transparent;
-  border: none;
+  border-radius: 2px;
   padding: 0.25rem;
+}
+
+input, select, textarea {
+  border: 1px solid #a5a6a7;
 }
 
 textarea {
@@ -554,10 +558,17 @@ textarea {
 }
 
 button {
-  border: 2px solid #94d78e;
-  background: #94d78e;
-  color: white;
+  background: #31a480;
+  color: #f7f7f7;
   font-family: "Gotham";
+  border: none;
+  border-radius: 100px;
+  transition: 0.5s all;
+  box-shadow: rgba(0, 0, 0, 0.29804) 0px 1px 1px 0px;
+  padding: 0.6rem 1.2rem;
+}
+button:hover {
+  background: #29896b;
 }
 
 input[type=number]::-webkit-outer-spin-button,
@@ -566,15 +577,8 @@ input[type=number]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input:not([type='checkbox']) {
-  border-bottom: 1px solid #757575;
-  margin-bottom: 1px;
-}
-
-input:active, input:focus, input.active, input:hover, textarea:active, textarea:focus, textarea.active, textarea:hover, select:active, select:focus, select.active, select:hover {
-  border-color: #2b557d;
-  border-width: 2px;
-  margin-bottom: 0px;
+input:active, input:focus, input.active, textarea:active, textarea:focus, textarea.active, select:active, select:focus, select.active {
+  border-color: #396fa2;
 }
 
 textarea {
@@ -586,58 +590,56 @@ a, button {
 }
 
 a {
-  color: #4d89c1;
+  color: #31a480;
   font-style: italic;
   text-decoration: underline;
   font-weight: 500;
 }
 
 a:hover {
-  color: #2b557d;
+  color: #1a5543;
 }
 
 #selection_buttons {
-  height: 60px;
+  height: 80px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
   align-items: center;
-  background: #424242;
+  background: white;
 }
 #selection_buttons button {
-  border: #424242;
-  flex: 0 1 80px;
-  height: 100%;
-  margin: auto 2rem;
-  position: relative;
-  background: #424242;
-  font-size: 1rem;
-  font-weight: 700;
-  font-family: "GothamXNarrow";
+  flex: 0 1 130px;
+  font-size: 0.7rem;
+  color: #f7f7f7;
+  margin: 0 2rem;
+  font-weight: 500;
+  font-family: "GothamNarrow";
+  text-transform: uppercase;
 }
-#selection_buttons button:active:after, #selection_buttons button:focus:after {
-  position: absolute;
-  bottom: 0px;
-  left: 29px;
-  content: '';
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-bottom: 12px solid white;
-  font-size: 0;
-  line-height: 0;
+#selection_buttons button.encounterBtn {
+  background: #31a480;
+}
+#selection_buttons button.encounterBtn:hover {
+  background: #29896b;
+}
+#selection_buttons button.creatureBtn {
+  background: #b24626;
+}
+#selection_buttons button.creatureBtn:hover {
+  background: #953a20;
+}
+#selection_buttons button.playerBtn {
+  background: #d7a627;
+}
+#selection_buttons button.playerBtn:hover {
+  background: #b98f22;
 }
 
 #selection_panels {
-  border: none;
   max-height: 40vh;
-  overflow: hidden;
-}
-#selection_panels h5, #selection_panels input, #selection_panels a, #selection_panels button, #selection_panels li {
-  text-align: center;
-  width: 100%;
 }
 #selection_panels .panel {
   display: flex;
@@ -646,29 +648,23 @@ a:hover {
   justify-content: flex-start;
   align-content: flex-start;
   align-items: center;
+  background: #2d3033;
+}
+#selection_panels h5 {
+  color: #f7f7f7;
+  text-align: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+#selection_panels input, #selection_panels a, #selection_panels button, #selection_panels li {
+  text-align: center;
+  width: 100%;
+  color: #2d3033;
 }
 #selection_panels .searchbox {
-  width: 80%;
   max-width: 400px;
   margin: 0 auto;
   height: 35px;
-  border: 1px solid rgba(66, 66, 66, 0.5);
-  border-radius: 3px;
-}
-#selection_panels .searchbox:focus {
-  border: 2px solid #396fa2;
-}
-#selection_panels button {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  font-weight: 600;
-  font-size: 1.3rem;
-  line-height: 0;
-}
-#selection_panels button.red {
-  background: #d7431b;
-  border-color: #d7431b;
 }
 #selection_panels ol {
   display: flex;
@@ -683,21 +679,22 @@ a:hover {
   margin: 0;
 }
 #selection_panels li {
-  margin: 0.625%;
-  padding: 0.625%;
-  flex: 1 0 23.75%;
-  max-width: 23.75%;
+  margin: 0.41667%;
+  padding: 0.41667%;
+  flex: 1 0 15.83333%;
+  max-width: 15.83333%;
   display: inline-block;
   overflow: hidden;
   list-style: none;
-  border: 1px solid #424242;
   border-radius: 3px;
   height: 80px;
+  background: white;
+  box-shadow: black 0px 1px 1px 0px;
 }
 #selection_panels li a {
   font-style: normal;
   text-decoration: none;
-  color: #424242;
+  color: #2d3033;
 }
 #selection_panels li h5, #selection_panels li p {
   margin: 0;
@@ -706,11 +703,15 @@ a:hover {
   font-size: 1rem;
   font-family: "GothamXNarrow";
   font-weight: 500;
+  color: #2d3033;
 }
 #selection_panels li p {
   font-size: 0.7rem;
   font-family: "GothamXNarrow";
   font-weight: 400;
+}
+#selection_panels li.encounterCard:hover, #selection_panels li.encounterCard .active {
+  background: #4d89c1;
 }
 #selection_panels .new_item {
   display: flex;
@@ -733,32 +734,34 @@ a:hover {
   height: 100%;
   border-radius: 1px;
   font-size: 3rem;
-  border: none;
 }
-#selection_panels .open button:hover {
-  background: #94d78e;
-  color: white;
-}
-#selection_panels .close {
-  margin: 1rem;
+#selection_panels .close input {
+  width: 80%;
 }
 #selection_panels .close button {
-  margin-top: 5px;
-  height: 25px;
-  width: 25px;
+  width: 40px;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  line-height: 0.25;
   font-size: 1.5rem;
-  line-height: 0.5rem;
+  font-weight: 700;
+  background: #b24626;
+}
+#selection_panels .close button:hover {
+  background: #953a20;
 }
 
 #selection_display {
-  background: white;
-  height: 50vh;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .encounter, .player {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  min-height: 94%;
+  margin: 2% auto 0 auto;
+  background: white;
+  border-radius: 3px;
+  padding: 1rem;
 }
 
 .player {
@@ -823,7 +826,7 @@ a:hover {
   height: 100%;
 }
 .player .player_basic textarea {
-  border: 1px solid #424242;
+  border: 1px solid #2d3033;
 }
 .player .player_basic input {
   height: 100%;
