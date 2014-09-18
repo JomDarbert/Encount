@@ -17,6 +17,7 @@ App.showHide = Ember.View.extend(
 App.drag = Ember.View.extend(
     attributeBindings: ['draggable']
     draggable: 'true'
+    classNames: ['draggable']
 
     dragStart: (event) ->
         data = 

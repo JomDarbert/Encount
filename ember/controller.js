@@ -2,7 +2,7 @@ App.IndexController = Ember.ArrayController.extend();
 
 App.UserController = Ember.ObjectController.extend({
   tagName: 'section',
-  showEncounter: false,
+  showEncounter: true,
   showCreature: false,
   showPlayer: false,
   showNewEncounter: false,
@@ -109,15 +109,25 @@ App.UserController = Ember.ObjectController.extend({
       this.set("newPlayerName", "");
     },
     toggle_new_encounter: function() {
-      this.toggleProperty("showNewEncounter", this.toggleProperty("showNewEncounterButton"));
+      this.toggleProperty("showNewEncounter");
+      this.toggleProperty("showNewEncounterButton");
+      setTimeout((function() {
+        $("#newEncInput").focus();
+      }), 0);
     },
     toggle_new_creature: function() {
       this.toggleProperty("showNewCreature");
       this.toggleProperty("showNewCreatureButton");
+      setTimeout((function() {
+        $("#newCreInput").focus();
+      }), 0);
     },
     toggle_new_player: function() {
       this.toggleProperty("showNewPlayer");
       this.toggleProperty("showNewPlayerButton");
+      setTimeout((function() {
+        $("#newPlaInput").focus();
+      }), 0);
     }
   }
 });

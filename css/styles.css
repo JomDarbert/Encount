@@ -600,8 +600,12 @@ a:hover {
   color: #1a5543;
 }
 
+body {
+  background: #2d3033;
+}
+
 #selection_buttons {
-  height: 10vh;
+  height: 60px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -609,6 +613,8 @@ a:hover {
   align-content: flex-start;
   align-items: center;
   background: white;
+  margin-bottom: 3px;
+  box-shadow: 0px 3px 2px 1px black;
 }
 #selection_buttons button {
   flex: 0 1 130px;
@@ -640,7 +646,7 @@ a:hover {
 
 #selection_panels {
   width: 50%;
-  height: 90vh;
+  height: 83vh;
   display: inline-block;
   float: left;
   overflow: hidden;
@@ -671,6 +677,8 @@ a:hover {
   max-width: 400px;
   margin: 0 auto;
   height: 35px;
+  border-radius: 3px;
+  font-size: 1rem;
 }
 #selection_panels ol {
   display: flex;
@@ -687,20 +695,13 @@ a:hover {
   flex: 1 0 31.66667%;
   max-width: 31.66667%;
   display: inline-block;
-  list-style: none;
   border-radius: 3px;
-  height: 80px;
+  list-style: none;
+  height: 90px;
   background: white;
-  box-shadow: black 0px 1px 1px 0px;
+  box-shadow: 0px 1px 1px 0px black;
   transition: 0.3s all;
-}
-#selection_panels li a {
-  font-style: normal;
-  text-decoration: none;
-  color: #2d3033;
-}
-#selection_panels li a div {
-  height: 100%;
+  cursor: pointer;
 }
 #selection_panels li h5, #selection_panels li p {
   margin: 0;
@@ -715,8 +716,26 @@ a:hover {
   font-size: 0.7rem;
   font-weight: 400;
 }
-#selection_panels li.encounterCard:hover, #selection_panels li.encounterCard .active {
+#selection_panels li .draggable {
+  height: 100%;
+}
+#selection_panels li.encounterCard:hover, #selection_panels li.encounterCard.active {
+  background: #90dec6;
+}
+#selection_panels li.creatureCard:hover, #selection_panels li.creatureCard.active {
+  background: #e6a08b;
+}
+#selection_panels li.playerCard:hover, #selection_panels li.playerCard.active {
+  background: #efdba8;
+}
+#selection_panels li #newEncBtn, #selection_panels li #newEncInput {
   background: #31a480;
+}
+#selection_panels li #newCreBtn, #selection_panels li #newCreInput {
+  background: #b24626;
+}
+#selection_panels li #newPlaBtn, #selection_panels li #newPlaInput {
+  background: #d7a627;
 }
 #selection_panels .new_item {
   display: flex;
@@ -730,25 +749,26 @@ a:hover {
 #selection_panels .open, #selection_panels .close {
   width: 100%;
   height: 100%;
-  background: #29896b;
+  border-radius: 3px;
 }
 #selection_panels .open button, #selection_panels .close button {
   width: 100%;
   height: 100%;
-  border-radius: 1px;
   font-size: 3rem;
+  border-radius: 3px;
 }
 #selection_panels .close form, #selection_panels input {
   height: 100%;
-  border: none;
   color: #f7f7f7;
+  font-size: 1.5rem;
+  border: none;
 }
 
 #selection_display {
   overflow: hidden;
   width: 50%;
   float: left;
-  height: 90vh;
+  height: 83vh;
   background: #2d3033;
 }
 
@@ -759,6 +779,7 @@ a:hover {
   background: white;
   border-radius: 3px;
   padding: 1rem;
+  box-shadow: 1px 2px 1px 0px black;
 }
 
 .player {

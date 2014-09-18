@@ -29,87 +29,82 @@
             </section>
 
             <section id="selection_panels">
+
                 {{#view App.showHide isVisible=showEncounter class="panel"}}
                     <h5>Encounters</h5>
                     {{input type="search" class="searchbox" placeholder="Find Encounter" value=encounterQuery}}
                     <ol>
                         <li class="new_item">
                             {{#view App.showHide isVisible=showNewEncounterButton class="open"}}
-                                <button {{action "toggle_new_encounter"}}>+</button>
+                                <button {{action "toggle_new_encounter"}} id="newEncBtn">+</button>
                             {{/view}}
 
                             {{#view App.showHide isVisible=showNewEncounter class="close"}}
                                 <form {{action "new_encounter" this this.newEncounterName on="submit"}}>
-                                    {{input value=newEncounterName}}
+                                    {{input value=newEncounterName id="newEncInput"}}
                                 </form>
                             {{/view}}
                         </li>
                         {{#each filteredEncounters}}
-                        <li class="encounterCard">
-                            {{#view App.drag}}
-                                {{#link-to "encounter" this}}
+                            {{#link-to "encounter" this tagName="li" class="encounterCard"}}
+                                {{#view App.drag}}
                                     <h5>{{encounter_name}}</h5>
                                     <p>Players: {{players.length}}</p>
                                     <p>Creatures: {{creatures.length}}</p>
-                                {{/link-to}}
-                            {{/view}}
-                        </li>
+                                {{/view}}
+                            {{/link-to}}
                         {{/each}}
                     </ol>
                 {{/view}}
+
+
                 {{#view App.showHide isVisible=showCreature class="panel"}}
                     <h5>Creatures</h5>
                     {{input type="search" class="searchbox" placeholder="Find Creature" value=creatureQuery}}
-                    <div class="new_item">
-                        {{#view App.showHide isVisible=showNewCreatureButton class="open"}}
-                            <button {{action "toggle_new_creature"}}>+</button>
-                        {{/view}}
-
-                        {{#view App.showHide isVisible=showNewCreature class="close"}}
-                            <form {{action "new_creature" this this.newCreatureName on="submit"}}>
-                                {{input value=newCreatureName}}
-                            </form>
-                            <button {{action "toggle_new_creature"}} class="red">-</button>
-                        {{/view}}
-                    </div>
                     <ol>
+                        <li class="new_item">
+                            {{#view App.showHide isVisible=showNewCreatureButton class="open"}}
+                                <button {{action "toggle_new_creature"}} id="newCreBtn">+</button>
+                            {{/view}}
+
+                            {{#view App.showHide isVisible=showNewCreature class="close"}}
+                                <form {{action "new_creature" this this.newCreatureName on="submit"}}>
+                                    {{input value=newCreatureName id="newCreInput"}}
+                                </form>
+                            {{/view}}
+                        </li>
                         {{#each filteredCreatures}}
-                        <li>
-                            {{#link-to "creature" this}}
+                            {{#link-to "creature" this tagName="li" class="creatureCard"}}
                                 {{#view App.drag content=this}}
                                     <h5>{{creature_name}}</h5>
                                     <p>Level {{level}}</p>
                                 {{/view}}
                             {{/link-to}}
-                        </li>
                         {{/each}}
                     </ol>
                 {{/view}}
                 {{#view App.showHide isVisible=showPlayer class="panel"}}
                     <h5>Players</h5>
                     {{input type="search" class="searchbox" placeholder="Find Player" value=playerQuery }} 
-                    <div class="new_item">
-                        {{#view App.showHide isVisible=showNewPlayerButton class="open"}}
-                            <button {{action "toggle_new_player"}}>+</button>
-                        {{/view}}
-
-                        {{#view App.showHide isVisible=showNewPlayer class="newPlayer" class="close"}}
-                            <form {{action "new_player" this this.newPlayerName on="submit"}}>
-                                {{input value=newPlayerName}}
-                            </form>
-                            <button {{action "toggle_new_player"}} class="red">-</button>
-                        {{/view}}
-                    </div>
                     <ol>
+                        <li class="new_item">
+                            {{#view App.showHide isVisible=showNewPlayerButton class="open"}}
+                                <button {{action "toggle_new_player"}} id="newPlaBtn">+</button>
+                            {{/view}}
+
+                            {{#view App.showHide isVisible=showNewPlayer class="close"}}
+                                <form {{action "new_player" this this.newPlayerName on="submit"}}>
+                                    {{input value=newPlayerName id="newPlaInput"}}
+                                </form>
+                            {{/view}}
+                        </li>
                         {{#each filteredPlayers}}
-                        <li>
-                            {{#link-to "player" this}}
+                            {{#link-to "player" this tagName="li" class="playerCard"}}
                                 {{#view App.drag content=this}}
                                     <h5>{{player_name}}</h5>
                                     <p>Level {{level}}</p>
                                 {{/view}}
                             {{/link-to}}
-                        </li>
                         {{/each}}
                     </ol>
                 {{/view}}

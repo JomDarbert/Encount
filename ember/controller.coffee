@@ -3,7 +3,7 @@ App.IndexController = Ember.ArrayController.extend()
 
 App.UserController = Ember.ObjectController.extend(
     tagName: 'section'
-    showEncounter: false
+    showEncounter: true
     showCreature: false
     showPlayer: false
     showNewEncounter: false
@@ -111,19 +111,31 @@ App.UserController = Ember.ObjectController.extend(
             return
 
         toggle_new_encounter: ->
-            @toggleProperty "showNewEncounter",
+            @toggleProperty "showNewEncounter"
             @toggleProperty "showNewEncounterButton"
+            setTimeout (->
+              $("#newEncInput").focus()
+              return
+            ), 0
             return
 
         toggle_new_creature: ->
             @toggleProperty "showNewCreature"
             @toggleProperty "showNewCreatureButton"
+            setTimeout (->
+              $("#newCreInput").focus()
+              return
+            ), 0
             return
 
 
         toggle_new_player: ->
             @toggleProperty "showNewPlayer"
             @toggleProperty "showNewPlayerButton"
+            setTimeout (->
+              $("#newPlaInput").focus()
+              return
+            ), 0
             return
 )
 

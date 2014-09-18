@@ -1,10 +1,12 @@
 @import "reset","base";
 
-
+body { background: $dark-grey; }
 #selection_buttons {
-    height: 10vh;
+    height: 60px;
     @include flex-parent(row,wrap,center);
     background: white;
+    margin-bottom: 3px;
+    box-shadow: 0px 3px 2px 1px rgba(black, 1);
 
     button {
         @include flex-child(auto,shrink, 130px);
@@ -29,7 +31,7 @@
 
 #selection_panels {
     width: 50%;
-    height: 90vh;
+    height: 83vh;
     display: inline-block;
     float: left;
     overflow: hidden;
@@ -53,47 +55,60 @@
         max-width: 400px;
         margin: 0 auto;
         height: 35px;
+        border-radius: 3px;
+        font-size: 1rem;
     }
 
     ol { @include flex-parent();width: 100%; }
 
     li {
         @include flex-child(3);
-        list-style: none;
         border-radius: 3px;
-        height: 80px;
+        list-style: none;
+        height: 90px;
         background: white;
-        box-shadow: rgba(0, 0, 0, 1) 0px 1px 1px 0px;
+        box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 1);
         transition: 0.3s all;
+        cursor: pointer;
 
-        a { 
-            font-style: normal;
-            text-decoration: none;
-            color: $dark-grey;
-
-            div { height: 100%; }
-        }
 
         h5,p { margin: 0;font-family: $sans-xnarrow; color: $dark-grey;}
         h5 {font-size: 1rem;  font-weight: $medium; }
         p { font-size: 0.7rem; font-weight: $book; }
 
+        .draggable { height: 100%; }
+
         &.encounterCard:hover,
-        &.encounterCard .active {
-            background: $seafoam;
+        &.encounterCard.active {
+            background: lighten($seafoam,30%);
         }
+
+        &.creatureCard:hover,
+        &.creatureCard.active {
+            background: lighten($orange,30%);
+        }
+
+        &.playerCard:hover,
+        &.playerCard.active {
+            background: lighten($yellow,30%);
+        }
+
+        #newEncBtn, #newEncInput { background: $seafoam; }
+        #newCreBtn, #newCreInput { background: $orange; }
+        #newPlaBtn, #newPlaInput { background: $yellow; }
     }
 
     .new_item { @include flex-parent(); padding: 0;}
 
     .open, .close { 
         width: 100%; 
-        height: 100%; 
-        button { width: 100%; height: 100%; border-radius: 1px; font-size: 3rem; }
-        background: darken($seafoam,7%);
+        height: 100%;
+        border-radius: 3px;
+
+        button { width: 100%; height: 100%; font-size: 3rem; border-radius: 3px; }
     }
 
-    .close form, input { height: 100%; border: none; color: $off-white; }
+    .close form, input { height: 100%; color: $off-white; font-size: 1.5rem; border: none; }
 
 }
 
@@ -101,7 +116,7 @@
     overflow: hidden;
     width: 50%;
     float: left;
-    height: 90vh;
+    height: 83vh;
     background: $dark-grey;
 }
 
@@ -113,6 +128,7 @@
     background: white;
     border-radius: 3px;
     padding: 1rem;
+    box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 1);
 }
 
 .player {
