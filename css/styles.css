@@ -601,7 +601,7 @@ a:hover {
 }
 
 #selection_buttons {
-  height: 80px;
+  height: 10vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -639,7 +639,11 @@ a:hover {
 }
 
 #selection_panels {
-  max-height: 40vh;
+  width: 50%;
+  height: 90vh;
+  display: inline-block;
+  float: left;
+  overflow: hidden;
 }
 #selection_panels .panel {
   display: flex;
@@ -649,6 +653,8 @@ a:hover {
   align-content: flex-start;
   align-items: center;
   background: #2d3033;
+  overflow: auto;
+  height: 90vh;
 }
 #selection_panels h5 {
   color: #f7f7f7;
@@ -674,44 +680,43 @@ a:hover {
   align-content: flex-start;
   align-items: center;
   width: 100%;
-  overflow: auto;
-  max-height: 30vh;
-  margin: 0;
 }
 #selection_panels li {
-  margin: 0.41667%;
-  padding: 0.41667%;
-  flex: 1 0 15.83333%;
-  max-width: 15.83333%;
+  margin: 0.83333%;
+  padding: 0.83333%;
+  flex: 1 0 31.66667%;
+  max-width: 31.66667%;
   display: inline-block;
-  overflow: hidden;
   list-style: none;
   border-radius: 3px;
   height: 80px;
   background: white;
   box-shadow: black 0px 1px 1px 0px;
+  transition: 0.3s all;
 }
 #selection_panels li a {
   font-style: normal;
   text-decoration: none;
   color: #2d3033;
 }
+#selection_panels li a div {
+  height: 100%;
+}
 #selection_panels li h5, #selection_panels li p {
   margin: 0;
+  font-family: "GothamXNarrow";
+  color: #2d3033;
 }
 #selection_panels li h5 {
   font-size: 1rem;
-  font-family: "GothamXNarrow";
   font-weight: 500;
-  color: #2d3033;
 }
 #selection_panels li p {
   font-size: 0.7rem;
-  font-family: "GothamXNarrow";
   font-weight: 400;
 }
 #selection_panels li.encounterCard:hover, #selection_panels li.encounterCard .active {
-  background: #4d89c1;
+  background: #31a480;
 }
 #selection_panels .new_item {
   display: flex;
@@ -723,42 +728,34 @@ a:hover {
   padding: 0;
 }
 #selection_panels .open, #selection_panels .close {
-  flex: 1 0 auto;
-}
-#selection_panels .open {
   width: 100%;
   height: 100%;
+  background: #29896b;
 }
-#selection_panels .open button {
+#selection_panels .open button, #selection_panels .close button {
   width: 100%;
   height: 100%;
   border-radius: 1px;
   font-size: 3rem;
 }
-#selection_panels .close input {
-  width: 80%;
-}
-#selection_panels .close button {
-  width: 40px;
-  margin-top: 0.5rem;
-  padding: 0.5rem 0.5rem;
-  line-height: 0.25;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: #b24626;
-}
-#selection_panels .close button:hover {
-  background: #953a20;
+#selection_panels .close form, #selection_panels input {
+  height: 100%;
+  border: none;
+  color: #f7f7f7;
 }
 
 #selection_display {
   overflow: hidden;
+  width: 50%;
+  float: left;
+  height: 90vh;
+  background: #2d3033;
 }
 
 .encounter, .player {
-  width: 80%;
+  width: 90%;
   min-height: 94%;
-  margin: 2% auto 0 auto;
+  margin: 3% auto;
   background: white;
   border-radius: 3px;
   padding: 1rem;
