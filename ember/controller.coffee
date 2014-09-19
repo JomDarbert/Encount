@@ -12,7 +12,6 @@ App.UserController = Ember.ObjectController.extend(
     showNewEncounterButton: true
     showNewCreatureButton: true
     showNewPlayerButton: true
-    encounterFilter: null
 
     filteredEncounters: (->
         query = @get "encounterQuery"
@@ -48,6 +47,14 @@ App.UserController = Ember.ObjectController.extend(
     ).property("content", "playerQuery")
 
     actions:
+        reset_new_buttons: ->
+            @set "showNewEncounter", false
+            @set "showNewEncounterButton", true
+            @set "showNewCreature", false
+            @set "showNewCreatureButton", true
+            @set "showNewPlayer", false
+            @set "showNewPlayerButton", true
+
         show_encounter: ->
             @set "showEncounter", true
             @set "showCreature", false

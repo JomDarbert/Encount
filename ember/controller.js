@@ -11,7 +11,6 @@ App.UserController = Ember.ObjectController.extend({
   showNewEncounterButton: true,
   showNewCreatureButton: true,
   showNewPlayerButton: true,
-  encounterFilter: null,
   filteredEncounters: (function() {
     var query, results;
     query = this.get("encounterQuery");
@@ -46,6 +45,14 @@ App.UserController = Ember.ObjectController.extend({
     return results;
   }).property("content", "playerQuery"),
   actions: {
+    reset_new_buttons: function() {
+      this.set("showNewEncounter", false);
+      this.set("showNewEncounterButton", true);
+      this.set("showNewCreature", false);
+      this.set("showNewCreatureButton", true);
+      this.set("showNewPlayer", false);
+      return this.set("showNewPlayerButton", true);
+    },
     show_encounter: function() {
       this.set("showEncounter", true);
       this.set("showCreature", false);

@@ -21,7 +21,7 @@
 
     <script type="text/x-handlebars" data-template-name="user" class="test">
         <section id="user_page">
-            <section id="selection_buttons">
+            <section id="selection_buttons" {{action "reset_new_buttons"}}>
                 <button {{action "show_encounter"}} class="encounterBtn">Encounters</button>
                 <button {{action "show_creature"}} class="creatureBtn">Creatures</button>
                 <button {{action "show_player"}} class="playerBtn">Players</button>
@@ -179,109 +179,110 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="creature">
-        <section class="creature_basic">
-            {{input value=creature_name placeholder="Name" class="creature_name"}}
-            {{input value=experience placeholder="Exp" class="creature_experience"}}
+        <section class="creature">
+            <section class="creature_basic">
+                {{input value=creature_name placeholder="Name" class="creature_name"}}
+                {{input value=experience placeholder="Exp" class="creature_experience"}}
+            </section>
+
+            <section class="creature_hp">
+                {{input value=hp_min placeholder="HP min" class="creature_hp_min"}}
+                {{input value=hp_max placeholder="HP max" class="creature_hp_max"}}
+            </section>
+
+            <section class="creature_misc">
+                {{textarea value=loot placeholder="Loot" class="creature_loot"}}
+                {{textarea value=notes placeholder="Notes" class="creature_notes"}}
+            </section>
+
+            <section class="creature_statblock">
+                <div class="stat"> 
+                    <label>Strength</label>
+                    {{input value=strength type="number" placeholder="Strength"}}
+                </div>
+                <div class="stat">
+                    <label>Constitution</label>
+                    {{input value=constitution type="number" placeholder="CON"}}
+                </div>
+                <div class="stat">
+                    <label>Dexterity</label>
+                    {{input value=dexterity type="number" placeholder="DEX"}}
+                </div>
+                <div class="stat">
+                    <label>Intelligence</label>
+                    {{input value=intelligence type="number" placeholder="INT"}}
+                </div>
+                <div class="stat">
+                    <label>Wisdom</label>
+                    {{input value=wisdom type="number" placeholder="WIS"}}
+                </div>
+                <div class="stat">
+                    <label>Charisma</label>
+                    {{input value=charisma type="number" placeholder="CHA"}}
+                </div>
+                <div class="stat">
+                    <label>Armor</label>
+                    {{input value=armor type="number" placeholder="AC"}}
+                </div>
+                <div class="stat">
+                    <label>Speed</label>
+                    {{input value=speed type="number" placeholder="Speed"}}
+                </div>
+                <div class="stat">
+                    <label>Initiative</label>
+                    {{input value=initiative type="number" placeholder="Initiative"}}
+                </div>
+            </section>
+
+            <section class="creature_abilities">
+                {{#each abilities}}
+                    <section class="creature_ability">
+                        <div class="ability_stat">
+                            {{input value=ability_name placeholder="Ability name"}}
+                        </div>
+                        <div class="ability_stat">
+                            <label>Description</label>
+                            {{textarea value=description placeholder="Ability description"}}
+                        </div>
+                        <div class="ability_stat">
+                            <label>Hit</label>
+                            {{input value=hit_roll placeholder="Hit roll"}}
+                        </div>
+                        <div class="ability_stat">
+                            <label>Damage</label>
+                            {{input value=damage_roll placeholder="Damage roll"}}
+                        </div>
+                        <div class="ability_stat">
+                            <label>Range</label>
+                            {{input value=range placeholder="Range"}}
+                        </div>
+                        <div class="ability_stat">
+                            <label>Quantity</label>
+                            {{input value=quantity placeholder="Quantity"}}
+                        </div>
+                        <div class="ability_stat">
+                            <label>Recharge</label>
+                            {{input value=recharge placeholder="Recharge"}}
+                        </div>
+                        <div class="ability_stat">
+                            <label>AOE</label>
+                            {{view Ember.Select content=aoe_types prompt="AOE Type" selection=aoe_type}}
+                        </div>
+                    </section>
+                {{/each}}
+
+                {{#view App.showHide isVisible=showNewAbilityButton}}
+                    <button {{action "toggle_new_ability"}}>+</button>
+                {{/view}}
+
+                {{#view App.showHide isVisible=showNewAbility class="newAbility"}}
+                    <form {{action "new_ability" this this.newAbilityName on="submit"}}>
+                        {{input value=newAbilityName}}
+                    </form>
+                    <button {{action "toggle_new_ability"}}>-</button>
+                {{/view}}
+            </section>
         </section>
-
-        <section class="creature_hp">
-            {{input value=hp_min placeholder="HP min" class="creature_hp_min"}}
-            {{input value=hp_max placeholder="HP max" class="creature_hp_max"}}
-        </section>
-
-        <section class="creature_misc">
-            {{textarea value=loot placeholder="Loot" class="creature_loot"}}
-            {{textarea value=notes placeholder="Notes" class="creature_notes"}}
-        </section>
-
-        <section class="creature_statblock">
-            <div class="stat"> 
-                <label>Strength</label>
-                {{input value=strength type="number" placeholder="Strength"}}
-            </div>
-            <div class="stat">
-                <label>Constitution</label>
-                {{input value=constitution type="number" placeholder="CON"}}
-            </div>
-            <div class="stat">
-                <label>Dexterity</label>
-                {{input value=dexterity type="number" placeholder="DEX"}}
-            </div>
-            <div class="stat">
-                <label>Intelligence</label>
-                {{input value=intelligence type="number" placeholder="INT"}}
-            </div>
-            <div class="stat">
-                <label>Wisdom</label>
-                {{input value=wisdom type="number" placeholder="WIS"}}
-            </div>
-            <div class="stat">
-                <label>Charisma</label>
-                {{input value=charisma type="number" placeholder="CHA"}}
-            </div>
-            <div class="stat">
-                <label>Armor</label>
-                {{input value=armor type="number" placeholder="AC"}}
-            </div>
-            <div class="stat">
-                <label>Speed</label>
-                {{input value=speed type="number" placeholder="Speed"}}
-            </div>
-            <div class="stat">
-                <label>Initiative</label>
-                {{input value=initiative type="number" placeholder="Initiative"}}
-            </div>
-        </section>
-
-        <section class="creature_abilities">
-            {{#each abilities}}
-                <section class="creature_ability">
-                    <div class="ability_stat">
-                        {{input value=ability_name placeholder="Ability name"}}
-                    </div>
-                    <div class="ability_stat">
-                        <label>Description</label>
-                        {{textarea value=description placeholder="Ability description"}}
-                    </div>
-                    <div class="ability_stat">
-                        <label>Hit</label>
-                        {{input value=hit_roll placeholder="Hit roll"}}
-                    </div>
-                    <div class="ability_stat">
-                        <label>Damage</label>
-                        {{input value=damage_roll placeholder="Damage roll"}}
-                    </div>
-                    <div class="ability_stat">
-                        <label>Range</label>
-                        {{input value=range placeholder="Range"}}
-                    </div>
-                    <div class="ability_stat">
-                        <label>Quantity</label>
-                        {{input value=quantity placeholder="Quantity"}}
-                    </div>
-                    <div class="ability_stat">
-                        <label>Recharge</label>
-                        {{input value=recharge placeholder="Recharge"}}
-                    </div>
-                    <div class="ability_stat">
-                        <label>AOE</label>
-                        {{view Ember.Select content=aoe_types prompt="AOE Type" selection=aoe_type}}
-                    </div>
-                </section>
-            {{/each}}
-
-            {{#view App.showHide isVisible=showNewAbilityButton}}
-                <button {{action "toggle_new_ability"}}>+</button>
-            {{/view}}
-
-            {{#view App.showHide isVisible=showNewAbility class="newAbility"}}
-                <form {{action "new_ability" this this.newAbilityName on="submit"}}>
-                    {{input value=newAbilityName}}
-                </form>
-                <button {{action "toggle_new_ability"}}>-</button>
-            {{/view}}
-        </section>
-
     </script>
 </body>
 	
