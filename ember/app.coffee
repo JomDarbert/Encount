@@ -54,3 +54,10 @@ App.drop = Ember.View.extend(
 
             @get('controller.model').get('creatures').pushObject creature
 )
+
+Ember.Handlebars.helper "datetime", (value, options) ->
+  format = "MMM. D, YYYY"
+  format = options.hash.format  if options.hash.format
+  if value
+    time = moment(value).format(format)
+    new Handlebars.SafeString(time)

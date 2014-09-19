@@ -116,6 +116,11 @@ input,textarea,select {
     }
 }
 
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: opacity 0.4s 0.4s ease; 
+  opacity: 0;
+}
+
 textarea {resize: none;}
 a,button {cursor: pointer; }
 a {color: $teal; font-style: italic; text-decoration: underline; font-weight: $medium; }

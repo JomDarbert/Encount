@@ -4,7 +4,6 @@
 	<meta charset="utf-8">
 	<title>Encount</title>
 	<link rel="stylesheet" href="css/styles.css"/>
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
     <!--[if lt IE 9]>-
         <script src="http://cdnjs.clou-dflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <![endif]-->
@@ -31,7 +30,7 @@
             <section id="selection_panels">
 
                 {{#view App.showHide isVisible=showEncounter class="panel"}}
-                    <h5>Encounters</h5>
+                    <h5 class="panel_header">Encounters</h5>
                     {{input type="search" class="searchbox" placeholder="Find Encounter" value=encounterQuery}}
                     <ol>
                         <li class="new_item">
@@ -49,8 +48,9 @@
                             {{#link-to "encounter" this tagName="li" class="encounterCard"}}
                                 {{#view App.drag}}
                                     <h5>{{encounter_name}}</h5>
-                                    <p>Players: {{players.length}}</p>
+                                    <p>Created {{datetime date_created}}</p>
                                     <p>Creatures: {{creatures.length}}</p>
+                                    <p>Players: {{players.length}}</p>
                                 {{/view}}
                             {{/link-to}}
                         {{/each}}
@@ -59,7 +59,7 @@
 
 
                 {{#view App.showHide isVisible=showCreature class="panel"}}
-                    <h5>Creatures</h5>
+                    <h5 class="panel_header">Creatures</h5>
                     {{input type="search" class="searchbox" placeholder="Find Creature" value=creatureQuery}}
                     <ol>
                         <li class="new_item">
@@ -84,7 +84,7 @@
                     </ol>
                 {{/view}}
                 {{#view App.showHide isVisible=showPlayer class="panel"}}
-                    <h5>Players</h5>
+                    <h5 class="panel_header">Players</h5>
                     {{input type="search" class="searchbox" placeholder="Find Player" value=playerQuery }} 
                     <ol>
                         <li class="new_item">

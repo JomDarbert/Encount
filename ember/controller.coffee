@@ -79,6 +79,7 @@ App.UserController = Ember.ObjectController.extend(
             newEncounter = @store.createRecord("encounter",
                 encounter_name: name
                 user: user
+                date_created: new Date()
             )
             user.get("encounters").then (encounters) ->
                 encounters.pushObject newEncounter

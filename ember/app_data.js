@@ -26,6 +26,7 @@ App.Encounter = DS.Model.extend({
   creatures: DS.hasMany("creature", {
     async: true
   }),
+  date_created: DS.attr("date"),
   experience: DS.attr("number")
 });
 

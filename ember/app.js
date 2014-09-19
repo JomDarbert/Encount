@@ -64,3 +64,15 @@ App.drop = Ember.View.extend({
     }
   }
 });
+
+Ember.Handlebars.helper("datetime", function(value, options) {
+  var format, time;
+  format = "MMM. D, YYYY";
+  if (options.hash.format) {
+    format = options.hash.format;
+  }
+  if (value) {
+    time = moment(value).format(format);
+    return new Handlebars.SafeString(time);
+  }
+});

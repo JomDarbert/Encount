@@ -15,7 +15,7 @@ body { background: $dark-grey; }
 }
 
 #selection_buttons {
-    height: 9vh;
+    height: 8vh;
     @include flex-parent(row,wrap,center);
     background: white;
     margin-bottom: 3px;
@@ -52,38 +52,44 @@ body { background: $dark-grey; }
     display: inline-block;
     float: left;
     overflow: hidden;
+    padding: 0.5rem;
 
-    .panel { @include flex-parent(); }
+    .panel { 
+        @include flex-parent(column,nowrap,flex-start,flex-start,stretch);
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
     
-    h5 { color: $off-white; text-align: center; width: 100%; margin-top: 0.25rem;}
-
-    input, a, button, li { 
-        text-align: center;
-        width: 100%;
-        color: $dark-grey;
+    .panel_header { 
+        @include flex-child(auto,shrink);
+        color: $off-white; 
+        text-align: center; 
+        min-height: 30px;
     }
 
     .searchbox { 
-        max-width: 400px;
-        margin: 0 auto;
-        height: 35px;
+        @include flex-child(auto,shrink,0,0.1);
         border-radius: 3px;
         font-size: 1rem;
+        text-align: center;
+        min-height: 30px;
+        height: auto;
+        width: 90%;
+        border: 1px solid $grey;
+        max-width: 400px;
+        align-self: center;
     }
 
     ol { 
-        @include flex-parent($alignItems: flex-start); 
-        width: 100%; 
-        overflow: auto;
-        height: 75vh;
-        @include bp(huge)   { height: 81vh; }
+        @include flex-child(auto,grow);
+        @include flex-parent(row,wrap,flex-start,flex-start,stretch); 
     }
 
     li {
-        @include bp(huge)   { @include flex-child(1); }
+        @include bp(huge)   { @include flex-child(3); }
         @include bp(large)  { @include flex-child(2); }
-        @include bp(medium) { @include flex-child(1,$margin: 0.025); &:first-of-type{margin-top: 0;}} 
-        @include bp(small)  { @include flex-child(1,$margin: 0.025); }
+        @include bp(medium) { @include flex-child(1); }
         border-radius: 3px;
         list-style: none;
         height: 90px;
@@ -92,10 +98,13 @@ body { background: $dark-grey; }
         transition: 0.3s all;
         cursor: pointer;
 
-
-        h5,p { margin: 0;font-family: $sans-xnarrow; color: $dark-grey;}
-        h5 {font-size: 1rem;  font-weight: $medium; }
-        p { font-size: 0.7rem; font-weight: $book; }
+        h5,p { margin: 0; text-align: center;}
+        h5 {font-size: 1rem; }
+        p { 
+            font-size: 0.7rem; 
+            font-weight: $book; 
+            text-align: center;
+        }
 
         .draggable { height: 100%; }
 
@@ -133,26 +142,31 @@ body { background: $dark-grey; }
         button { width: 100%; height: 100%; font-size: 3rem; border-radius: 3px; }
     }
 
-    .close form, input { height: 100%; color: $off-white; font-size: 1.5rem; border: none; }
+    .close form, input { 
+        width: 100%; 
+        height: 100%; 
+        color: $off-white; 
+        font-size: 1.2rem; 
+        border: none; 
+        text-align: center;
+    }
 
 }
 
 #selection_display {
     overflow: hidden;
-    width: 50%;
-    float: left;
-    height: 90vh;
     background: $dark-grey;
+    @include flex-parent(row,wrap,center,center,stretch);
+    height: 90vh;
+    padding-right: 0.5rem;
 }
 
 // ENCOUNTER
 .encounter, .player, .creature {
-    width: 95%;
-    min-height: 97%;
-    margin: 0.7rem auto 0 auto;
+    @include flex-child(1);
+    padding: 1rem;
     background: white;
     border-radius: 3px;
-    padding: 1rem;
     box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 1);
 }
 

@@ -11,6 +11,7 @@ App.Encounter = DS.Model.extend
     user: DS.belongsTo "user",{async: true}
     players: DS.hasMany "player",{async: true}
     creatures: DS.hasMany "creature",{async: true}
+    date_created: DS.attr "date"
     experience: DS.attr "number" 
 
 App.Player = DS.Model.extend
