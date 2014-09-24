@@ -129,108 +129,111 @@
 
     <script type="text/x-handlebars" data-template-name="player">
         <section class="player">
-            {{input value=player_name placeholder="Name" class="player_name"}}
+            {{input value=player_name placeholder="Player Name" class="name"}}
 
-            <section class="player_statblock">
+            <section class="statblock">
                 <div class="stat">
                     {{input value=strength type="number"}}
-                    <label>Strength</label>
+                    <label>STR</label>
                 </div>
                 <div class="stat">
                     {{input value=constitution type="number"}}
-                    <label>Constitution</label>                
+                    <label>CON</label>                
                 </div>
                 <div class="stat">
                     {{input value=dexterity type="number"}}
-                    <label>Dexterity</label>
+                    <label>DEX</label>
                 </div>
                 <div class="stat">
                     {{input value=intelligence type="number"}}
-                    <label>Intelligence</label>
+                    <label>INT</label>
                 </div>
                 <div class="stat">
                     {{input value=wisdom type="number"}}
-                    <label>Wisdom</label>
+                    <label>WIS</label>
                 </div>
                 <div class="stat">
                     {{input value=charisma type="number"}}
-                    <label>Charisma</label>
+                    <label>CHA</label>
                 </div>
                 <div class="stat">
                     {{input value=armor type="number"}}
-                    <label>Armor</label>
+                    <label>AC</label>
                 </div>
                 <div class="stat">
                     {{input value=speed type="number"}}
-                    <label>Speed</label>
+                    <label>SPD</label>
                 </div>
             </section>
 
-            <section class="player_basic">
-                {{textarea value=notes placeholder="Notes" class="player_notes"}}
-                <div class="stat">
-                    {{input value=initiative type="number"}}
-                    <label>Initiative</label>
-                </div>
-                </div>
-            </section>
+            {{textarea value=notes class="player_notes"}}
 
         </section>
     </script>
 
     <script type="text/x-handlebars" data-template-name="creature">
         <section class="creature">
+            {{input value=creature_name placeholder="Creature Name" class="name"}}
+
             <section class="creature_basic">
-                {{input value=creature_name placeholder="Name" class="creature_name"}}
-                {{input value=experience placeholder="Exp" class="creature_experience"}}
+                <div class="exp">
+                    {{input value=experience class="creature_experience"}}
+                    <label>Experience</label>
+                </div>
+
+                <div class="hp">
+                    {{input value=hp_min class="creature_hp_min"}}
+                    <label>HP Min</label>
+                </div>
+                <div class="hp">
+                    {{input value=hp_max class="creature_hp_max"}}
+                    <label>HP Max</label>
+                </div>
             </section>
 
-            <section class="creature_hp">
-                {{input value=hp_min placeholder="HP min" class="creature_hp_min"}}
-                {{input value=hp_max placeholder="HP max" class="creature_hp_max"}}
+            <section class="statblock">
+                <div class="stat"> 
+                    {{input value=strength type="number"}}
+                    <label>STR</label>
+                </div>
+                <div class="stat">
+                    {{input value=constitution type="number"}}
+                    <label>CON</label>
+                </div>
+                <div class="stat">
+                    {{input value=dexterity type="number"}}
+                    <label>DEX</label>
+                </div>
+                <div class="stat">
+                    {{input value=intelligence type="number"}}
+                    <label>INT</label>
+                </div>
+                <div class="stat">
+                    {{input value=wisdom type="number"}}
+                    <label>WIS</label>
+                </div>
+                <div class="stat">
+                    {{input value=charisma type="number"}}
+                    <label>CHA</label>
+                </div>
+                <div class="stat">
+                    {{input value=armor type="number"}}
+                    <label>AC</label>
+                </div>
+                <div class="stat">
+                    {{input value=speed type="number"}}
+                    <label>SPD</label>
+                </div>
             </section>
 
             <section class="creature_misc">
-                {{textarea value=loot placeholder="Loot" class="creature_loot"}}
-                {{textarea value=notes placeholder="Notes" class="creature_notes"}}
-            </section>
-
-            <section class="creature_statblock">
-                <div class="stat"> 
-                    <label>Strength</label>
-                    {{input value=strength type="number" placeholder="Strength"}}
+                <div class="loot">
+                    {{textarea value=loot class="loot_text" rows=4}}
+                    <label>Loot</label>
                 </div>
-                <div class="stat">
-                    <label>Constitution</label>
-                    {{input value=constitution type="number" placeholder="CON"}}
-                </div>
-                <div class="stat">
-                    <label>Dexterity</label>
-                    {{input value=dexterity type="number" placeholder="DEX"}}
-                </div>
-                <div class="stat">
-                    <label>Intelligence</label>
-                    {{input value=intelligence type="number" placeholder="INT"}}
-                </div>
-                <div class="stat">
-                    <label>Wisdom</label>
-                    {{input value=wisdom type="number" placeholder="WIS"}}
-                </div>
-                <div class="stat">
-                    <label>Charisma</label>
-                    {{input value=charisma type="number" placeholder="CHA"}}
-                </div>
-                <div class="stat">
-                    <label>Armor</label>
-                    {{input value=armor type="number" placeholder="AC"}}
-                </div>
-                <div class="stat">
-                    <label>Speed</label>
-                    {{input value=speed type="number" placeholder="Speed"}}
-                </div>
-                <div class="stat">
-                    <label>Initiative</label>
-                    {{input value=initiative type="number" placeholder="Initiative"}}
+                <div class="notes">
+                    {{textarea value=notes class="notes_text" rows=4}}
+                    <label>Notes</label>
                 </div>
             </section>
 
@@ -238,31 +241,31 @@
                 {{#each abilities}}
                     <section class="creature_ability">
                         <div class="ability_stat">
-                            {{input value=ability_name placeholder="Ability name"}}
+                            {{input value=ability_name}}
                         </div>
                         <div class="ability_stat">
                             <label>Description</label>
-                            {{textarea value=description placeholder="Ability description"}}
+                            {{textarea value=description}}
                         </div>
                         <div class="ability_stat">
                             <label>Hit</label>
-                            {{input value=hit_roll placeholder="Hit roll"}}
+                            {{input value=hit_roll}}
                         </div>
                         <div class="ability_stat">
                             <label>Damage</label>
-                            {{input value=damage_roll placeholder="Damage roll"}}
+                            {{input value=damage_roll}}
                         </div>
                         <div class="ability_stat">
                             <label>Range</label>
-                            {{input value=range placeholder="Range"}}
+                            {{input value=range}}
                         </div>
                         <div class="ability_stat">
                             <label>Quantity</label>
-                            {{input value=quantity placeholder="Quantity"}}
+                            {{input value=quantity}}
                         </div>
                         <div class="ability_stat">
                             <label>Recharge</label>
-                            {{input value=recharge placeholder="Recharge"}}
+                            {{input value=recharge}}
                         </div>
                         <div class="ability_stat">
                             <label>AOE</label>

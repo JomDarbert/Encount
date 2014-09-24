@@ -610,15 +610,17 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.4rem;
 }
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+  background: rgba(247, 247, 247, 0.3);
+  border-radius: 200px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #585a5b;
+  background-color: #c4c4c4;
+  border-radius: 200px;
 }
 
 #selection_buttons {
@@ -660,7 +662,7 @@ body {
 #selection_buttons button.playerBtn:hover {
   background: #b98f22;
 }
-@media (max-width: 800px) {
+@media (max-width: 749px) {
   #selection_buttons button {
     margin: 0 0.5rem;
   }
@@ -746,7 +748,7 @@ body {
     display: inline-block;
   }
 }
-@media (max-width: 800px) {
+@media (max-width: 749px) {
   #selection_panels li {
     margin: 2.5%;
     padding: 2.5%;
@@ -839,58 +841,86 @@ body {
   flex: 1 0 95%;
   max-width: 95%;
   display: inline-block;
-  padding: 1rem;
+  padding: 0.5rem;
   background: white;
   border-radius: 3px;
   box-shadow: 1px 2px 1px 0px black;
+  overflow: auto;
 }
-
-.player {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: center;
-  padding-top: 2rem;
-}
-.player .player_name, .player .player_statblock, .player .player_basic {
-  width: 100%;
-  text-align: center;
-}
-.player .player_name {
-  font-size: 2rem;
-  font-family: "Gotham";
-  font-weight: 500;
-}
-.player .stat {
-  margin: 0.27778%;
-  padding: 0.27778%;
-  flex: 1 0 10.55556%;
-  max-width: 10.55556%;
-  display: inline-block;
-  margin: 1rem 0;
-}
-.player .stat label, .player .stat input {
+.encounter label, .encounter input, .player label, .player input, .creature label, .creature input {
   display: block;
   text-align: center;
   width: 100%;
   font-family: "GothamXNarrow";
 }
-.player .stat label {
+.encounter label, .player label, .creature label {
   margin: 0;
-  padding: 0.15rem;
+  padding: 0;
   line-height: 1;
   font-weight: 300;
 }
-.player .stat input {
+.encounter input, .player input, .creature input {
   font-family: "MercuryG1";
   font-weight: 700;
   font-size: 1.5rem;
   padding: 0;
 }
-.player .player_basic {
-  height: 25vh;
+.encounter .name, .player .name, .creature .name {
+  flex: 0 1 auto;
+  font-size: 2rem;
+  font-family: "Gotham";
+  font-weight: 500;
+  padding: 0.25rem;
+}
+
+.statblock {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+  flex: 0 1 auto;
+}
+.statblock .stat {
+  margin: 0.3125%;
+  padding: 0.3125%;
+  flex: 1 0 11.875%;
+  max-width: 11.875%;
+  display: inline-block;
+}
+@media (max-width: 749px) {
+  .statblock .stat {
+    margin: 0.625%;
+    padding: 0.625%;
+    flex: 1 0 23.75%;
+    max-width: 23.75%;
+    display: inline-block;
+  }
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: stretch;
+}
+.player .player_notes {
+  flex: 1 0 auto;
+  margin-top: 1rem;
+}
+
+.creature {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: stretch;
+}
+.creature .creature_basic {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -898,22 +928,56 @@ body {
   align-content: flex-start;
   align-items: center;
 }
-.player .player_basic textarea, .player .player_basic .stat {
-  margin: 1.25%;
-  padding: 1.25%;
-  flex: 1 0 47.5%;
-  max-width: 47.5%;
+.creature .creature_basic .exp {
+  margin: 0.5%;
+  padding: 0.5%;
+  flex: 1 0 49%;
+  max-width: 49%;
   display: inline-block;
-  height: 100%;
 }
-.player .player_basic textarea {
-  border: 1px solid #2d3033;
+.creature .creature_basic .hp {
+  margin: 0.25%;
+  padding: 0.25%;
+  flex: 1 0 24.5%;
+  max-width: 24.5%;
+  display: inline-block;
 }
-.player .player_basic input {
-  height: 100%;
-  font-size: 7rem;
+.creature .creature_misc {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
 }
-
-.creature_ability {
-  border: 1px solid;
+.creature .creature_misc .loot, .creature .creature_misc .notes {
+  margin: 0.5%;
+  padding: 0.5%;
+  flex: 1 0 49%;
+  max-width: 49%;
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+}
+.creature .creature_misc .loot label, .creature .creature_misc .loot textarea, .creature .creature_misc .notes label, .creature .creature_misc .notes textarea {
+  margin: 0%;
+  padding: 0%;
+  flex: 1 0 100%;
+  max-width: 100%;
+  display: inline-block;
+}
+.creature .creature_misc .loot label, .creature .creature_misc .notes label {
+  margin-bottom: 0.25rem;
+}
+.creature .creature_misc .loot textarea, .creature .creature_misc .notes textarea {
+  padding: 0.25rem;
+}
+.creature .creature_abilities {
+  border-top: 2px solid #2d3033;
+  margin-top: 1rem;
+  padding-top: 1rem;
 }

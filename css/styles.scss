@@ -3,15 +3,17 @@
 body { background: $dark-grey; }
 
 ::-webkit-scrollbar {
-    width: 0.5em;
+    width: 0.4rem;
 }
  
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+    background: rgba($off-white,0.3);
+    border-radius: 200px;
 }
  
 ::-webkit-scrollbar-thumb {
-  background-color: $grey;
+  background-color: darken($off-white,20%);
+  border-radius: 200px;
 }
 
 #selection_buttons {
@@ -164,67 +166,84 @@ body { background: $dark-grey; }
 // ENCOUNTER
 .encounter, .player, .creature {
     @include flex-child(1);
-    padding: 1rem;
+    padding: 0.5rem;
     background: white;
     border-radius: 3px;
     box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 1);
+    overflow: auto;
+
+    label,input { 
+        display: block;
+        text-align: center;
+        width: 100%;
+        font-family: $sans-xnarrow;
+    }
+
+    label {
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-weight: $light;
+    }
+
+    input {
+        font-family: $serif;
+        font-weight: $bold;
+        font-size: 1.5rem;
+        padding: 0;
+    }
+
+    .name {
+        @include flex-child(auto,shrink);
+        font-size: 2rem;
+        font-family: $sans;
+        font-weight: $medium;
+        padding: 0.25rem;
+    }
+}
+
+
+.statblock { 
+    @include flex-parent();
+    @include flex-child(auto,shrink);
+
+    .stat {
+        @include flex-child(8);
+        @include bp(medium)  { @include flex-child(4); }
+    }
 }
 
 .player {
-    @include flex-parent();
-    padding-top: 2rem;
-
-    .player_name, .player_statblock, .player_basic {
-        width: 100%;
-        text-align: center;
-    }
-
-    .player_name {
-        font-size: 2rem;
-        font-family: $sans;
-        font-weight: 500;
-    }
-
-    .stat {
-        @include flex-child(9);
-        margin: 1rem 0;
-
-        label,input { 
-            display: block;
-            text-align: center;
-            width: 100%;
-            font-family: $sans-xnarrow;
-        }
-
-        label {
-            margin: 0;
-            padding: 0.15rem;
-            line-height: 1;
-            font-weight: $light;
-        }
-
-        input {
-            font-family: $serif;
-            font-weight: $bold;
-            font-size: 1.5rem;
-            padding: 0;
-        }
-    }
-
-    .player_basic {
-        height: 25vh;
-        @include flex-parent();
-
-        textarea, .stat { @include flex-child(2); height: 100%; }
-        textarea { border: 1px solid $dark-grey; }
-        input { height: 100%; font-size: 7rem; }
-    }
-
+    @include flex-parent(column,nowrap,flex-start,flex-start,stretch);
+    .player_notes { @include flex-child(auto,grow); margin-top: 1rem;}
 }
 
+.creature {
+    @include flex-parent(column,nowrap,flex-start,flex-start,stretch);
 
+    .creature_basic {
+        @include flex-parent();
 
+        .exp { @include flex-child(2,$margin: 0.02); }
+        .hp { @include flex-child(4,$margin: 0.02); }
+    }
 
-.creature_ability {
-    border: 1px solid;
+    .creature_misc { 
+        @include flex-parent(row,nowrap);
+
+        .loot,.notes { 
+            @include flex-child(2,$margin:0.02);
+            @include flex-parent();
+            label,textarea { @include flex-child(1,$margin:0); }
+            label { margin-bottom: 0.25rem; }
+            textarea { padding: 0.25rem; }
+        }
+    }
+
+    .creature_abilities {
+        border-top: 2px solid $dark-grey;
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
 }
