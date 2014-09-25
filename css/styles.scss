@@ -221,15 +221,27 @@ body { background: $dark-grey; }
 .creature {
     @include flex-parent(column,nowrap,flex-start,flex-start,stretch);
 
+
+    .name { @include flex-child(auto,shrink); min-height: 50px; }
+
     .creature_basic {
+        @include flex-child(auto,shrink);
         @include flex-parent();
+        min-height: 70px;
 
         .exp { @include flex-child(2,$margin: 0.02); }
         .hp { @include flex-child(4,$margin: 0.02); }
     }
 
+    .statblock {
+        @include flex-child(auto,shrink);
+        min-height: 60px;
+    }
+
     .creature_misc { 
+        @include flex-child(auto,shrink);
         @include flex-parent(row,nowrap);
+        min-height: 120px;
 
         .loot,.notes { 
             @include flex-child(2,$margin:0.02);
@@ -244,6 +256,31 @@ body { background: $dark-grey; }
         border-top: 2px solid $dark-grey;
         margin-top: 1rem;
         padding-top: 1rem;
+    }
+
+}
+
+.creature_abilities {
+    @include flex-child(auto,grow);
+    @include flex-parent($alignItems: flex-start);
+
+
+    .creature_ability {
+        @include flex-child(2);
+        @include flex-parent();
+        border-radius: 3px;
+        border: 1px solid $dark-grey;
+
+        .ability_name, .ability_description { @include flex-child(1,$margin:0); margin-bottom: 0.4rem; padding: 0.25rem;}
+        textarea { width: 100%; margin: 0; height: 65px; }
+        input,select,label { width: 100%; margin: 0; }
+    }
+
+    .ability_stat {
+
+        input { font-size: 1rem; height: 30px; }
+        @include flex-child(2, $margin: 0.02);
+
     }
 
 }

@@ -54,7 +54,7 @@ App.Player = DS.Model.extend({
 App.Creature = DS.Model.extend({
   creature_name: DS.attr("string"),
   level: DS.attr("number"),
-  hp_min: DS.attr("number"),
+  hp_cur: DS.attr("number"),
   hp_max: DS.attr("number"),
   ac: DS.attr("number"),
   str: DS.attr("number"),

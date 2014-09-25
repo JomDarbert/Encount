@@ -182,8 +182,8 @@
                 </div>
 
                 <div class="hp">
-                    {{input value=hp_min class="creature_hp_min"}}
-                    <label>HP Min</label>
+                    {{input value=hp_min class="creature_hp_cur"}}
+                    <label>HP Cur</label>
                 </div>
                 <div class="hp">
                     {{input value=hp_max class="creature_hp_max"}}
@@ -240,50 +240,47 @@
             <section class="creature_abilities">
                 {{#each abilities}}
                     <section class="creature_ability">
+                        {{input value=ability_name class="ability_name"}}
+                        {{textarea value=description class="ability_description" placeholder="Description"}}
                         <div class="ability_stat">
-                            {{input value=ability_name}}
-                        </div>
-                        <div class="ability_stat">
-                            <label>Description</label>
-                            {{textarea value=description}}
-                        </div>
-                        <div class="ability_stat">
-                            <label>Hit</label>
                             {{input value=hit_roll}}
+                            <label>Hit</label>
                         </div>
                         <div class="ability_stat">
-                            <label>Damage</label>
                             {{input value=damage_roll}}
+                            <label>Damage</label>
                         </div>
                         <div class="ability_stat">
-                            <label>Range</label>
                             {{input value=range}}
+                            <label>Range</label>
                         </div>
                         <div class="ability_stat">
-                            <label>Quantity</label>
                             {{input value=quantity}}
+                            <label>Quantity</label>
                         </div>
                         <div class="ability_stat">
-                            <label>Recharge</label>
                             {{input value=recharge}}
+                            <label>Recharge</label>
                         </div>
                         <div class="ability_stat">
-                            <label>AOE</label>
                             {{view Ember.Select content=aoe_types prompt="AOE Type" selection=aoe_type}}
+                            <label>AOE</label>
                         </div>
                     </section>
                 {{/each}}
 
-                {{#view App.showHide isVisible=showNewAbilityButton}}
-                    <button {{action "toggle_new_ability"}}>+</button>
-                {{/view}}
+                <section class="new_item">
+                    {{#view App.showHide isVisible=showNewAbilityButton}}
+                        <button {{action "toggle_new_ability"}}>+</button>
+                    {{/view}}
 
-                {{#view App.showHide isVisible=showNewAbility class="newAbility"}}
-                    <form {{action "new_ability" this this.newAbilityName on="submit"}}>
-                        {{input value=newAbilityName}}
-                    </form>
-                    <button {{action "toggle_new_ability"}}>-</button>
-                {{/view}}
+                    {{#view App.showHide isVisible=showNewAbility class="newAbility"}}
+                        <form {{action "new_ability" this this.newAbilityName on="submit"}}>
+                            {{input value=newAbilityName}}
+                        </form>
+                        <button {{action "toggle_new_ability"}}>-</button>
+                    {{/view}}
+                </section>
             </section>
         </section>
     </script>
