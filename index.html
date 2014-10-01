@@ -117,13 +117,40 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="encounter">
-        {{#view App.drop class="encounter"}}Drop here!
-            {{#each players}}
-                {{player_name}}
-            {{/each}}
-            {{#each creatures}}
-                {{creature_name}}
-            {{/each}}
+        {{#view App.drop class="encounter"}}
+        <h3>{{encounter_name}}</h3>
+        <h5 class="date">Created {{datetime date_created}}</h5>
+        <h5 class="exp">{{experience}}</h5>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Initiative</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each players}}
+                <tr>
+                    <td class="enc_table_name">{{player_name}}</td>
+                    <td>Player</td>
+                    <td>1</td>
+                    <td>{{input value=initiative}}</td>
+                </tr>
+                {{/each}}
+                {{#each creatures}}
+                <tr>
+                    <td class="enc_table_name">{{creature_name}}</td>
+                    <td>Creature</td>
+                    <td>{{input value=quantity}}</td>
+                    <td>{{input value=initiative}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <button class="launch_encounter" {{action "launch_encounter"}}>Launch</button>
         {{/view}}
     </script>
 
@@ -263,7 +290,7 @@
                             <label>Recharge</label>
                         </div>
                         <div class="ability_stat">
-                            {{view Ember.Select content=aoe_types prompt="AOE Type" selection=aoe_type}}
+                            {{input value=aoe_type}}
                             <label>AOE</label>
                         </div>
                     </section>
@@ -276,7 +303,7 @@
 
                     {{#view App.showHide isVisible=showNewAbility class="newAbility"}}
                         <form {{action "new_ability" this this.newAbilityName on="submit"}}>
-                            {{input value=newAbilityName}}
+                            {{input value=newAbilityName id="newAbilInput"}}
                         </form>
                     {{/view}}
                 </section>

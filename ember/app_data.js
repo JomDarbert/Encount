@@ -53,6 +53,7 @@ App.Player = DS.Model.extend({
 
 App.Creature = DS.Model.extend({
   creature_name: DS.attr("string"),
+  quantity: DS.attr("number"),
   level: DS.attr("number"),
   hp_cur: DS.attr("number"),
   hp_max: DS.attr("number"),
@@ -88,7 +89,7 @@ App.Ability = DS.Model.extend({
   quantity: DS.attr("number"),
   aoe_type: DS.attr("string"),
   range: DS.attr("string"),
-  creatures: DS.hasMany("creature", {
+  creature: DS.belongsTo("creature", {
     async: true
   })
 });
@@ -149,6 +150,6 @@ App.Ability.FIXTURES = [
     id: 1,
     ability_name: "ability_one",
     user: 1,
-    creatures: [1]
+    creature: 1
   }
 ];

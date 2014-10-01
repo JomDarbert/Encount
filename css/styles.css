@@ -550,7 +550,6 @@ input, select, button, label, textarea {
   outline: none;
   background: transparent;
   border-radius: 2px;
-  padding: 0.25rem;
 }
 
 button {
@@ -1021,18 +1020,26 @@ body {
   align-items: center;
   border-radius: 3px;
   border: 1px solid #2d3033;
-  height: 240px;
   overflow: hidden;
+}
+@media (max-width: 749px) {
+  .creature_abilities .creature_ability, .creature_abilities .new_item {
+    margin: 2.5%;
+    padding: 2.5%;
+    flex: 1 0 95%;
+    max-width: 95%;
+    display: inline-block;
+  }
 }
 .creature_abilities .creature_ability .ability_name, .creature_abilities .new_item .ability_name {
   font-family: "GothamNarrow";
   font-weight: 500;
 }
 .creature_abilities .creature_ability .ability_name, .creature_abilities .new_item .ability_name, .creature_abilities .creature_ability .ability_description, .creature_abilities .new_item .ability_description {
-  margin: 1%;
-  padding: 1%;
-  flex: 1 0 98%;
-  max-width: 98%;
+  margin: 2.5%;
+  padding: 2.5%;
+  flex: 1 0 95%;
+  max-width: 95%;
   display: inline-block;
 }
 .creature_abilities .creature_ability textarea, .creature_abilities .new_item textarea {
@@ -1052,11 +1059,8 @@ body {
   display: inline-block;
 }
 .creature_abilities .ability_stat input {
+  height: 1.3rem;
   font-size: 1rem;
-}
-.creature_abilities .ability_stat select {
-  padding: 0.05rem;
-  text-align: center;
 }
 .creature_abilities .new_item {
   padding: 0;
@@ -1070,4 +1074,42 @@ body {
   height: 100%;
   background: #278998;
   color: #f7f7f7;
+}
+
+.encounter {
+  position: relative;
+}
+.encounter table {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+}
+.encounter thead {
+  border-bottom: 3px solid #2d3033;
+  font-family: "GothamNarrow";
+  font-weight: 500;
+}
+.encounter tbody {
+  padding: 0;
+  text-align: center;
+}
+.encounter tbody td {
+  padding: 0 0.5rem;
+  font-family: "GothamXNarrow";
+  border: 1px solid #d8d9da;
+}
+.encounter input {
+  font-size: 0.8rem;
+  font-family: "GothamXNarrow";
+}
+.encounter .enc_table_name {
+  width: 50%;
+}
+.encounter input {
+  margin: 0;
+}
+.encounter button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.6rem;
 }

@@ -136,7 +136,6 @@ App.UserController = Ember.ObjectController.extend(
             ), 0
             return
 
-
         toggle_new_player: ->
             @toggleProperty "showNewPlayer"
             @toggleProperty "showNewPlayerButton"
@@ -157,6 +156,7 @@ App.CreatureController = Ember.ObjectController.extend(
                 ability_name: name
                 creature: creature
             )
+
             creature.get("abilities").then (abilities) ->
                 abilities.pushObject newAbility
                 creature.save()
@@ -169,5 +169,9 @@ App.CreatureController = Ember.ObjectController.extend(
         toggle_new_ability: ->
             @toggleProperty "showNewAbility"
             @toggleProperty "showNewAbilityButton"
+            setTimeout (->
+              $("#newAbilInput").focus()
+              return
+            ), 0
             return
 )

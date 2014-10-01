@@ -161,6 +161,9 @@ App.CreatureController = Ember.ObjectController.extend({
     toggle_new_ability: function() {
       this.toggleProperty("showNewAbility");
       this.toggleProperty("showNewAbilityButton");
+      setTimeout((function() {
+        $("#newAbilInput").focus();
+      }), 0);
     }
   }
 });

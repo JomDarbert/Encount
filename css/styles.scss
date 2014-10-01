@@ -262,22 +262,21 @@ body { background: $dark-grey; }
 
     .creature_ability {
         @include flex-child(2);
+        @include bp(medium) { @include flex-child(1); }
         @include flex-parent();
         border-radius: 3px;
         border: 1px solid $dark-grey;
-        height: 240px;
         overflow: hidden;
 
         .ability_name { font-family: $sans-narrow; font-weight: $medium; }
-        .ability_name, .ability_description { @include flex-child(1,$margin:0.02); }
+        .ability_name, .ability_description { @include flex-child(1); }
         textarea { width: 100%; margin: 0; height: 40px; }
         input,select,label { width: 100%; margin: 0; }
     }
 
     .ability_stat {
         @include flex-child(2);
-        input { font-size: 1rem; }
-        select { padding: 0.05rem; text-align: center; }
+        input { height: 1.3rem; font-size: 1rem; }
     }
 
     .new_item {
@@ -289,4 +288,24 @@ body { background: $dark-grey; }
         form,input { height: 100%; background: $teal; color: $off-white; }
     }
 
+}
+
+.encounter {
+    position: relative;
+
+    table { margin-top: 2rem; font-size: 0.8rem; }
+    thead { border-bottom: 3px solid $dark-grey; font-family: $sans-narrow; font-weight: $medium; }
+
+    tbody { padding: 0; text-align: center; }
+    tbody td { padding: 0 0.5rem; font-family: $sans-xnarrow; border: 1px solid lighten($grey,50%); }
+
+    input { font-size: 0.8rem; font-family: $sans-xnarrow; }
+
+    .enc_table_name {
+        width: 50%;
+    }
+
+    input { margin: 0;}
+
+    button { position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.6rem; }
 }
