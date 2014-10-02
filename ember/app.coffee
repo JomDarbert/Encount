@@ -30,7 +30,9 @@ App.drag = Ember.View.extend(
 
 App.drop = Ember.View.extend(
     classNames: ['drop']
+    classNameBindings: "fullscreen"
     tagName: 'section'
+    fullscreen: false
 
     dragOver: (event) ->
         event.preventDefault()
@@ -53,6 +55,10 @@ App.drop = Ember.View.extend(
                 if test_id is data.id then creature = c
 
             @get('controller.model').get('creatures').pushObject creature
+
+    actions:   
+        launch_encounter: (encounter) ->
+            @toggleProperty "fullscreen"
 )
 
 Ember.Handlebars.helper "datetime", (value, options) ->

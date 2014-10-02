@@ -13,16 +13,6 @@
   }
 }
 
-@mixin popshadow() {
-    background: white;
-    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 1);
-}
-
-@mixin invert-colors() {
-    color: $bg-color;
-    background: $text-color;
-}
-
 /* FLEXBOX */
 @mixin flex-parent($row_or_col: row, $wrap: wrap, $justify: flex-start, $alignContent: flex-start,$alignItems: center) {
     display: flex;

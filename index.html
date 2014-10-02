@@ -24,7 +24,6 @@
                 <button {{action "show_encounter"}} class="encounterBtn">Encounters</button>
                 <button {{action "show_creature"}} class="creatureBtn">Creatures</button>
                 <button {{action "show_player"}} class="playerBtn">Players</button>
-                <!--<button {{action "show_none"}}>DM Mode</button>-->
             </section>
 
             <section id="selection_panels">
@@ -118,40 +117,146 @@
 
     <script type="text/x-handlebars" data-template-name="encounter">
         {{#view App.drop class="encounter"}}
-        <h3>{{encounter_name}}</h3>
-        <h5 class="date">Created {{datetime date_created}}</h5>
-        <h5 class="exp">{{experience}}</h5>
+            <h3>{{encounter_name}}</h3>
+            <h5 class="date">Created {{datetime date_created}}</h5>
+            <h5 class="exp">{{experience}}</h5>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Quantity</th>
-                    <th>Initiative</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each players}}
-                <tr>
-                    <td class="enc_table_name">{{player_name}}</td>
-                    <td>Player</td>
-                    <td>1</td>
-                    <td>{{input value=initiative}}</td>
-                </tr>
-                {{/each}}
-                {{#each creatures}}
-                <tr>
-                    <td class="enc_table_name">{{creature_name}}</td>
-                    <td>Creature</td>
-                    <td>{{input value=quantity}}</td>
-                    <td>{{input value=initiative}}</td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-        <button class="launch_encounter" {{action "launch_encounter"}}>Launch</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Initiative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each players}}
+                    <tr>
+                        <td class="enc_table_name">{{#link-to "enc_player" this}}{{player_name}}{{/link-to}}</td>
+                        <td>Player</td>
+                        <td>1</td>
+                        <td>{{input value=initiative}}</td>
+                    </tr>
+                    {{/each}}
+                    {{#each creatures}}
+                    <tr>
+                        <td class="enc_table_name">{{#link-to "enc_creature" this}}{{creature_name}}{{/link-to}}</td>
+                        <td>Creature</td>
+                        <td>{{input value=quantity}}</td>
+                        <td>{{input value=initiative}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <button class="launch_encounter" {{action "launch_encounter" target=view}}>+/-</button>
+            {{outlet}}
         {{/view}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="enc_player">
+        {{render "player" this}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="enc_creature">
+                <section class="creature">
+            {{input value=creature_name placeholder="Creature Name" class="name"}}
+
+            <section class="creature_basic">
+                <div class="exp">
+                    {{input value=experience class="creature_experience"}}
+                    <label>Experience</label>
+                </div>
+
+                <div class="hp">
+                    {{input value=hp_min class="creature_hp_cur"}}
+                    <label>HP Cur</label>
+                </div>
+                <div class="hp">
+                    {{input value=hp_max class="creature_hp_max"}}
+                    <label>HP Max</label>
+                </div>
+            </section>
+
+            <section class="statblock">
+                <div class="stat"> 
+                    {{input value=strength type="number"}}
+                    <label>STR</label>
+                </div>
+                <div class="stat">
+                    {{input value=constitution type="number"}}
+                    <label>CON</label>
+                </div>
+                <div class="stat">
+                    {{input value=dexterity type="number"}}
+                    <label>DEX</label>
+                </div>
+                <div class="stat">
+                    {{input value=intelligence type="number"}}
+                    <label>INT</label>
+                </div>
+                <div class="stat">
+                    {{input value=wisdom type="number"}}
+                    <label>WIS</label>
+                </div>
+                <div class="stat">
+                    {{input value=charisma type="number"}}
+                    <label>CHA</label>
+                </div>
+                <div class="stat">
+                    {{input value=armor type="number"}}
+                    <label>AC</label>
+                </div>
+                <div class="stat">
+                    {{input value=speed type="number"}}
+                    <label>SPD</label>
+                </div>
+            </section>
+
+            <section class="creature_misc">
+                <div class="loot">
+                    {{textarea value=loot class="loot_text" rows=4}}
+                    <label>Loot</label>
+                </div>
+                <div class="notes">
+                    {{textarea value=notes class="notes_text" rows=4}}
+                    <label>Notes</label>
+                </div>
+            </section>
+
+            <section class="creature_abilities">
+                {{#each abilities}}
+                    <section class="creature_ability">
+                        {{input value=ability_name class="ability_name"}}
+                        {{textarea value=description class="ability_description" placeholder="Description"}}
+                        <div class="ability_stat">
+                            {{input value=hit_roll}}
+                            <label>Hit</label>
+                        </div>
+                        <div class="ability_stat">
+                            {{input value=damage_roll}}
+                            <label>Damage</label>
+                        </div>
+                        <div class="ability_stat">
+                            {{input value=range}}
+                            <label>Range</label>
+                        </div>
+                        <div class="ability_stat">
+                            {{input value=quantity}}
+                            <label>Quantity</label>
+                        </div>
+                        <div class="ability_stat">
+                            {{input value=recharge}}
+                            <label>Recharge</label>
+                        </div>
+                        <div class="ability_stat">
+                            {{input value=aoe_type}}
+                            <label>AOE</label>
+                        </div>
+                    </section>
+                {{/each}}
+            </section>
+        </section>
     </script>
 
     <script type="text/x-handlebars" data-template-name="player">
@@ -297,7 +402,7 @@
                 {{/each}}
 
                 <section class="new_item">
-                    {{#view App.showHide isVisible=showNewAbilityButton}}
+                    {{#view App.showHide isVisible=showNewAbilityButton class="newAbilButton"}}
                         <button {{action "toggle_new_ability"}}>+</button>
                     {{/view}}
 

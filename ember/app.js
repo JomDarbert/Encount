@@ -34,7 +34,9 @@ App.drag = Ember.View.extend({
 
 App.drop = Ember.View.extend({
   classNames: ['drop'],
+  classNameBindings: "fullscreen",
   tagName: 'section',
+  fullscreen: false,
   dragOver: function(event) {
     return event.preventDefault();
   },
@@ -61,6 +63,11 @@ App.drop = Ember.View.extend({
         }
       });
       return this.get('controller.model').get('creatures').pushObject(creature);
+    }
+  },
+  actions: {
+    launch_encounter: function(encounter) {
+      return this.toggleProperty("fullscreen");
     }
   }
 });
